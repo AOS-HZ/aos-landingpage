@@ -1,0 +1,20 @@
+---
+import Container from "./Container.astro";
+import Link from "./ui/Link.astro";
+---
+
+<Container>
+  <section id="launch" class="mt-24">
+    <div class="mx-auto max-w-5xl rounded-2xl bg-black px-8 py-12 text-center md:px-20 md:py-20">
+      <h2 class="font-display text-4xl tracking-tight text-white md:text-6xl">
+        Make AOS your public landing page.
+      </h2>
+      <p class="mx-auto mt-4 max-w-3xl text-lg text-slate-400 md:text-xl">
+        仓库现在已经是 Astro 项目，首页结构也贴近 Astroship 源码的拆法。接下来你可以继续往上加表单、SEO、部署和更多页面。
+      </p>
+      <div class="mt-6 flex justify-center">
+        <Link href="#hero" style="inverted">Back to Top</Link>
+      </div>
+    </div>
+  </section>
+</Container>

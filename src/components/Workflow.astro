@@ -1,0 +1,50 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+
+const steps = [
+  {
+    title: "Discover",
+    body: "扫描本地安装面，先建立组件清单。",
+  },
+  {
+    title: "Classify",
+    body: "按来源、能力和类型拆分生态视图。",
+  },
+  {
+    title: "Inspect",
+    body: "围绕真实行为应用规则并生成信号。",
+  },
+  {
+    title: "Quarantine",
+    body: "对高风险组件执行隔离和处置。",
+  },
+  {
+    title: "Monitor",
+    body: "持续观察后续变化和恢复动作。",
+  },
+];
+---
+
+<Container>
+  <section id="workflow" class="mt-24">
+    <SectionHead
+      label="Workflow"
+      title="不是只做一次检查，而是让本地 Agent 安全有一条可重复的处理路径。"
+      body="AOS 先盘点环境，再把风险信号变成可读事实，最后给出隔离与后续监控的位置。"
+    />
+
+    <div class="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      {
+        steps.map((item) => (
+          <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="font-mono text-xs uppercase tracking-[0.18em] text-slate-500">
+              {item.title}
+            </p>
+            <p class="mt-4 leading-7 text-slate-600">{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Container>

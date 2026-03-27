@@ -1,0 +1,30 @@
+---
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/inter";
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Agents-of-Shield | Local Agent Security Console",
+  description = "Agents-of-Shield 是面向本地 AI Agent 生态的桌面安全控制台，用于发现 Skills、MCP、Tools、Prompts 与 Plugins，提供扫描、评分、隔离与持续可见性。",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,47 @@
+---
+import Container from "./Container.astro";
+import Link from "./ui/Link.astro";
+import ShieldMark from "./ShieldMark.astro";
+
+const menuitems = [
+  { title: "Features", path: "#features" },
+  { title: "Surfaces", path: "#surfaces" },
+  { title: "Screens", path: "#screens" },
+  { title: "Workflow", path: "#workflow" },
+];
+---
+
+<Container>
+  <header class="my-5 flex flex-col items-center justify-between gap-4 lg:flex-row">
+    <a href="/" class="flex items-center gap-3 text-lg">
+      <ShieldMark class="h-10 w-10 text-blue-600" />
+      <span>
+        <span class="font-display font-bold tracking-tight text-slate-900">Agents</span>
+        <span class="font-display text-slate-500">ofShield</span>
+      </span>
+    </a>
+
+    <nav class="flex flex-wrap items-center justify-center gap-1">
+      {
+        menuitems.map((item) => (
+          <a
+            href={item.path}
+            class="rounded-md px-3 py-2 font-mono text-xs uppercase tracking-[0.16em] text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+          >
+            {item.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="#screens"
+        class="font-mono text-xs uppercase tracking-[0.16em] text-slate-600 transition hover:text-slate-900"
+      >
+        Preview
+      </a>
+      <Link href="#launch" size="md">Book Demo</Link>
+    </div>
+  </header>
+</Container>

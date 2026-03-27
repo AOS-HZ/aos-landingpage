@@ -1,0 +1,53 @@
+---
+import Container from "./Container.astro";
+import SectionHead from "./SectionHead.astro";
+
+const screens = [
+  {
+    title: "组件管理",
+    body: "把已安装组件与来源拆开管理，环境边界更清楚。",
+    image: "/assets/skills-management.png",
+  },
+  {
+    title: "风险分析",
+    body: "每条发现都能追到具体规则、路径和原因，不只是一条告警。",
+    image: "/assets/risk-analysis.png",
+  },
+  {
+    title: "隔离区",
+    body: "先移出活跃环境，再决定恢复、观察还是清理。",
+    image: "/assets/quarantine-zone.png",
+  },
+  {
+    title: "活动监控",
+    body: "把后续变动持续保留下来，避免扫描结果很快失效。",
+    image: "/assets/activity-monitor.png",
+  },
+];
+---
+
+<Container>
+  <section id="screens" class="mt-24">
+    <SectionHead
+      label="Product Screens"
+      title="用真实截图把 AOS 的阅读路径和处理路径讲完整。"
+      body="从总览、分析、隔离到持续监控，这些界面不是零散展示，而是同一条安全工作流的不同视角。"
+    />
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      {
+        screens.map((screen) => (
+          <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div class="border-b border-slate-200 px-5 py-5">
+              <h3 class="font-display text-2xl font-semibold tracking-tight text-slate-950">
+                {screen.title}
+              </h3>
+              <p class="mt-2 leading-7 text-slate-500">{screen.body}</p>
+            </div>
+            <img src={screen.image} alt={screen.title} class="w-full object-cover object-top" />
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Container>
