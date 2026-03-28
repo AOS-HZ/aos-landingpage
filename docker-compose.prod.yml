@@ -1,0 +1,12 @@
+services:
+  aos-landingpage:
+    container_name: aos-landingpage
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aos-landingpage:ecs
+    env_file:
+      - .env.ecs
+    ports:
+      - "${AOS_LANDINGPAGE_PORT:-18081}:80"
+    restart: unless-stopped

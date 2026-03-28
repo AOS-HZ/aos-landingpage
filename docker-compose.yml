@@ -1,0 +1,9 @@
+services:
+  aos-landingpage:
+    container_name: aos-landingpage
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "18081:80"
+    restart: unless-stopped
