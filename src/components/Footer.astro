@@ -2,11 +2,20 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="my-20">
-  <p class="text-center text-sm text-slate-500">
-    Copyright © {year} Agents-of-Shield. All rights reserved.
-  </p>
-  <p class="mt-1 text-center text-xs text-slate-500">
-    Built on Astro for the local agent era.
-  </p>
+<footer class="my-12">
+  <div class="mx-auto max-w-5xl px-6 flex flex-col sm:flex-row items-center justify-between border-t border-slate-200/60 pt-8">
+    <div class="flex items-center gap-2">
+      <span class="font-display font-bold tracking-tight text-slate-900 text-sm">Agents</span>
+      <span class="font-display text-slate-500 text-sm">ofShield</span>
+    </div>
+    
+    <div class="mt-4 sm:mt-0 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+      <p class="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-slate-400">
+        © {year} All rights reserved.
+      </p>
+      <p class="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-slate-400">
+        Built on Astro
+      </p>
+    </div>
+  </div>
 </footer>

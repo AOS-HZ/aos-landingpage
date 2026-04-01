@@ -7,55 +7,64 @@ const features = [
     title: "先把本地资产盘点清楚",
     description: "自动发现 Skills、MCP Servers、Tools、Prompts 与 Plugins，让你的 Agent 环境不再靠猜。",
     badge: "D1",
+    color: "bg-blue-50 text-blue-700 border-blue-200"
   },
   {
     title: "把来源、能力和风险拆开看",
     description: "不把第三方组件、执行能力与风险信号混在一起，阅读路径更短，判断也更稳。",
     badge: "C2",
+    color: "bg-indigo-50 text-indigo-700 border-indigo-200"
   },
   {
     title: "规则围绕真实行为建立",
     description: "重点看 shell 执行、敏感文件访问、联网、下载与注入模式，而不是只给抽象评分。",
     badge: "I3",
+    color: "bg-violet-50 text-violet-700 border-violet-200"
   },
   {
     title: "发现问题后立刻处置",
     description: "高风险组件可以直接进入隔离区，再决定恢复、继续观察还是清理，不需要手动翻目录。",
     badge: "R4",
+    color: "bg-rose-50 text-rose-700 border-rose-200"
   },
   {
     title: "把后续变化持续盯住",
     description: "从一次性扫描升级到持续观察，知道环境后来发生了什么，而不是只停在首轮检查。",
     badge: "M5",
+    color: "bg-amber-50 text-amber-700 border-amber-200"
   },
   {
     title: "更适合做本地安全入口",
     description: "AOS 的产品形态不是在线表单，而是原生桌面控制台，更适合长期留在开发环境旁边。",
     badge: "A6",
+    color: "bg-emerald-50 text-emerald-700 border-emerald-200"
   },
 ];
 ---
 
 <Container>
-  <section id="features" class="mt-24 md:mt-16">
+  <section id="features" class="mt-32 md:mt-40 scroll-mt-24">
     <SectionHead
       label="Why AOS"
-      title="Everything you need to make local agent risk legible."
+      title="Make local agent risk legible."
       body="这个 landing page 不是在喊抽象口号，而是在把你到底看什么、怎么判断、遇到风险怎么办讲清楚。"
+      align="center"
     />
 
-    <div class="mt-16 grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         features.map((item) => (
-          <div class="flex items-start gap-4">
-            <div class="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-black font-mono text-xs uppercase tracking-[0.16em] text-white">
+          <div class="group relative overflow-hidden rounded-[2rem] border border-slate-200/60 bg-white/60 p-8 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-300">
+            <div class={`mb-6 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border font-mono text-sm font-bold uppercase tracking-[0.16em] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 ${item.color}`}>
               {item.badge}
             </div>
             <div>
-              <h3 class="font-display text-xl font-semibold tracking-tight text-slate-950">
+              <h3 class="font-display text-xl font-bold tracking-tight text-slate-900 transition-colors group-hover:text-blue-600">
                 {item.title}
               </h3>
-              <p class="mt-2 leading-7 text-slate-500">{item.description}</p>
+              <p class="mt-4 leading-relaxed text-slate-600">
+                {item.description}
+              </p>
             </div>
           </div>
         ))

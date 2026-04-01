@@ -8,6 +8,20 @@
   --font-display:
     "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif,
     system-ui, sans-serif, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei";
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
 
 @layer base {
@@ -24,10 +38,16 @@
     min-width: 320px;
     font-family: var(--font-sans);
     color: #0f172a;
-    background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    background-color: #fafafa;
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(210, 100%, 93%, 0.7) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(253, 100%, 96%, 0.7) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, hsla(220, 100%, 96%, 0.7) 0px, transparent 50%);
+    background-attachment: fixed;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   a {

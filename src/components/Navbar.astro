@@ -11,22 +11,22 @@ const menuitems = [
 ];
 ---
 
-<Container>
-  <header class="my-5 flex flex-col items-center justify-between gap-4 lg:flex-row">
-    <a href="/" class="flex items-center gap-3 text-lg">
-      <ShieldMark class="h-10 w-10 text-blue-600" />
-      <span>
+<div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 animate-fade-in-up">
+  <header class="flex w-full max-w-5xl items-center justify-between gap-4 rounded-full border border-white/40 bg-white/70 px-4 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md transition-all sm:px-6">
+    <a href="/" class="flex items-center gap-2.5 text-lg transition-transform hover:scale-105">
+      <ShieldMark class="h-8 w-8 text-blue-600 drop-shadow-sm" />
+      <span class="hidden sm:inline-block">
         <span class="font-display font-bold tracking-tight text-slate-900">Agents</span>
         <span class="font-display text-slate-500">ofShield</span>
       </span>
     </a>
 
-    <nav class="flex flex-wrap items-center justify-center gap-1">
+    <nav class="hidden md:flex flex-wrap items-center justify-center gap-1">
       {
         menuitems.map((item) => (
           <a
             href={item.path}
-            class="rounded-md px-3 py-2 font-mono text-xs uppercase tracking-[0.16em] text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+            class="rounded-full px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate-500 transition-all hover:bg-slate-900/5 hover:text-slate-900"
           >
             {item.title}
           </a>
@@ -37,11 +37,12 @@ const menuitems = [
     <div class="flex items-center gap-3">
       <a
         href="#screens"
-        class="font-mono text-xs uppercase tracking-[0.16em] text-slate-600 transition hover:text-slate-900"
+        class="hidden sm:inline-block font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate-500 transition-colors hover:text-slate-900"
       >
         Preview
       </a>
-      <Link href="#launch" size="md">Book Demo</Link>
+      <Link href="#launch" size="md" class="!rounded-full shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5">Book Demo</Link>
     </div>
   </header>
-</Container>
+</div>
+
