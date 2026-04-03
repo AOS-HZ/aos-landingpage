@@ -1,0 +1,62 @@
+---
+import Container from "./Container.astro";
+
+const categories = [
+  {
+    title: "LLM 平台",
+    items: ["OpenAI", "Anthropic", "Azure OpenAI", "文心一言", "通义千问"]
+  },
+  {
+    title: "Agent 框架",
+    items: ["LangChain", "LlamaIndex", "AutoGen", "CrewAI", "魔搭 Agent"]
+  },
+  {
+    title: "开发工具",
+    items: ["GitHub", "GitLab", "Jenkins", "Docker", "Kubernetes"]
+  },
+  {
+    title: "安全生态",
+    items: ["Splunk", "Datadog", "Slack", "Jira", "ServiceNow"]
+  }
+];
+---
+
+<section id="ecosystem" class="py-24 relative">
+  <Container>
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-6">无缝集成你的 <span class="text-gradient">AI 技术栈</span></h2>
+      <p class="text-lg text-text-muted">无论是底层大模型还是上层 Agent 框架，我们都能提供开箱即用的安全防护</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        categories.map((category) => (
+          <div class="glass-card p-6 border-white/5 hover:border-primary/20 transition-colors group">
+            <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-3">
+              <span class="w-2 h-2 bg-secondary rounded-full"></span>
+              {category.title}
+            </h3>
+            
+            <div class="flex flex-col gap-3">
+              {category.items.map((item) => (
+                <div class="bg-white/5 rounded-lg px-4 py-3 text-text-muted text-sm flex justify-between items-center hover:bg-white/10 hover:text-white transition-colors cursor-pointer group/item relative">
+                  <span class="font-medium">{item}</span>
+                  
+                  <!-- Tooltip -->
+                  <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-[#1E293B] text-xs text-white px-3 py-1.5 rounded opacity-0 group-hover/item:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 border border-white/10 shadow-xl">
+                    通过 SDK 一键接入
+                    <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#1E293B] border-r border-b border-white/10 rotate-45"></div>
+                  </div>
+                  
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary opacity-0 group-hover/item:opacity-100 transition-opacity" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

@@ -4,29 +4,28 @@ import Link from "./ui/Link.astro";
 import ShieldMark from "./ShieldMark.astro";
 
 const menuitems = [
-  { title: "Features", path: "#features" },
-  { title: "Surfaces", path: "#surfaces" },
-  { title: "Screens", path: "#screens" },
-  { title: "Workflow", path: "#workflow" },
+  { title: "产品功能", path: "#features" },
+  { title: "技术架构", path: "#architecture" },
+  { title: "客户案例", path: "#customers" },
 ];
 ---
 
 <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 animate-fade-in-up">
-  <header class="flex w-full max-w-5xl items-center justify-between gap-4 rounded-full border border-white/40 bg-white/70 px-4 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-md transition-all sm:px-6">
-    <a href="/" class="flex items-center gap-2.5 text-lg transition-transform hover:scale-105">
-      <ShieldMark class="h-8 w-8 text-blue-600 drop-shadow-sm" />
+  <header class="flex w-full max-w-6xl items-center justify-between gap-4 rounded-full border border-white/10 bg-[#0F172A]/70 px-4 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-lg transition-all sm:px-6">
+    <a href="/" class="flex items-center gap-2.5 text-lg transition-transform hover:scale-105 group">
+      <ShieldMark class="h-8 w-8 text-primary drop-shadow-[0_0_10px_rgba(0,212,170,0.5)] transition-transform group-hover:rotate-12" />
       <span class="hidden sm:inline-block">
-        <span class="font-display font-bold tracking-tight text-slate-900">Agents</span>
-        <span class="font-display text-slate-500">ofShield</span>
+        <span class="font-display font-bold tracking-tight text-white">AgentsOf</span>
+        <span class="font-display text-primary font-bold ml-[-4px]">Shield</span>
       </span>
     </a>
 
-    <nav class="hidden md:flex flex-wrap items-center justify-center gap-1">
+    <nav class="hidden lg:flex flex-wrap items-center justify-center gap-1">
       {
         menuitems.map((item) => (
           <a
             href={item.path}
-            class="rounded-full px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate-500 transition-all hover:bg-slate-900/5 hover:text-slate-900"
+            class="rounded-full px-4 py-2 text-[15px] text-text-muted transition-all hover:bg-white/5 hover:text-white"
           >
             {item.title}
           </a>
@@ -35,14 +34,7 @@ const menuitems = [
     </nav>
 
     <div class="flex items-center gap-3">
-      <a
-        href="#screens"
-        class="hidden sm:inline-block font-mono text-[0.7rem] uppercase tracking-[0.16em] text-slate-500 transition-colors hover:text-slate-900"
-      >
-        Preview
-      </a>
-      <Link href="#launch" size="md" class="!rounded-full shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5">Book Demo</Link>
+      <Link href="#trial" size="md" style="primary" class="font-bold">立即使用</Link>
     </div>
   </header>
 </div>
-

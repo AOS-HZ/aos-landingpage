@@ -1,0 +1,92 @@
+---
+import Container from "./Container.astro";
+
+const cases = [
+  {
+    company: "某头部金融科技公司",
+    quote: "ShieldAgent 帮助我们在上线前发现了 47 个高危 Agent 漏洞，避免了潜在的百万级数据泄露风险。",
+    metrics: [
+      { icon: "🛡️", label: "阻断 12,000+ 次攻击" },
+      { icon: "⚡", label: "平均响应时间 2ms" },
+      { icon: "📈", label: "安全审计效率提升 80%" }
+    ]
+  },
+  {
+    company: "某跨国制造企业",
+    quote: "MCP 供应链扫描功能让我们第一次看清了 AI Agent 的第三方依赖风险。",
+    metrics: [
+      { icon: "🔍", label: "发现 23 个风险 MCP" },
+      { icon: "🔒", label: "拦截 156 次权限提升尝试" },
+      { icon: "🌐", label: "覆盖全球 5 个研发中心" }
+    ]
+  },
+  {
+    company: "某互联网医疗平台",
+    quote: "符合 HIPAA 要求的审计日志功能，让我们顺利通过监管审查，将合规周期大幅缩短。",
+    metrics: [
+      { icon: "✅", label: "100% 操作可追溯" },
+      { icon: "⏱️", label: "合规审查时间减少 60%" },
+      { icon: "🏥", label: "保护 100W+ 患者数据" }
+    ]
+  }
+];
+---
+
+<section id="customers" class="py-24 relative bg-[#0a0e27]/50 border-y border-white/5">
+  <Container>
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-6">守护行业领军企业的 <span class="text-gradient">AI 创新</span></h2>
+      <p class="text-lg text-text-muted">各行各业的先锋企业都在使用 AgentOfShield 保护他们的 AI 资产</p>
+    </div>
+
+    <!-- Horizontal scrollable cards on mobile, grid on desktop -->
+    <div class="flex overflow-x-auto lg:grid lg:grid-cols-3 gap-6 pb-8 lg:pb-0 snap-x snap-mandatory hide-scrollbar">
+      {
+        cases.map((item) => (
+          <div class="min-w-[320px] w-full lg:w-auto snap-center shrink-0">
+            <div class="glass-card p-8 h-full flex flex-col hover:-translate-y-2 transition-transform duration-300 border-white/10 hover:border-primary/30 group">
+              <!-- Quote Icon -->
+              <div class="text-primary/20 mb-6 group-hover:text-primary/40 transition-colors">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" />
+                </svg>
+              </div>
+              
+              <blockquote class="text-white text-lg leading-relaxed mb-8 flex-grow">
+                "{item.quote}"
+              </blockquote>
+              
+              <div class="mt-auto">
+                <div class="text-white font-bold mb-4 flex items-center gap-3">
+                  <div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center text-xs">
+                    🏢
+                  </div>
+                  {item.company}
+                </div>
+                
+                <div class="bg-[#0a0e27] rounded-xl p-4 border border-white/5 space-y-3">
+                  {item.metrics.map((metric) => (
+                    <div class="flex items-center gap-3 text-sm text-text-muted group-hover:text-gray-300 transition-colors">
+                      <span class="text-base">{metric.icon}</span>
+                      <span class="font-medium">{metric.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

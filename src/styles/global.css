@@ -6,11 +6,23 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei";
   --font-display:
-    "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif,
-    system-ui, sans-serif, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei";
+    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei";
   
+  /* Color System */
+  --color-primary: #00D4AA;
+  --color-secondary: #3B82F6;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-bg-main: #0F172A;
+  --color-bg-card: #1E293B;
+  --color-text-main: #F8FAFC;
+  --color-text-muted: #94A3B8;
+
+  /* Animations */
   --animate-float: float 6s ease-in-out infinite;
-  --animate-fade-in-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+  --animate-glow-pulse: glowPulse 2s infinite;
+  --animate-pulse-slow: pulseSlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   
   @keyframes float {
     0% { transform: translateY(0px); }
@@ -21,6 +33,17 @@
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes glowPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 212, 170, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 212, 170, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 212, 170, 0); }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
   }
 }
 
@@ -37,12 +60,10 @@
     margin: 0;
     min-width: 320px;
     font-family: var(--font-sans);
-    color: #0f172a;
-    background-color: #fafafa;
-    background-image: 
-      radial-gradient(at 0% 0%, hsla(210, 100%, 93%, 0.7) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(253, 100%, 96%, 0.7) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, hsla(220, 100%, 96%, 0.7) 0px, transparent 50%);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    /* Deep dark tech background gradient */
+    background-image: linear-gradient(to bottom right, #0a0e27, #1a1f3a);
     background-attachment: fixed;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -61,7 +82,18 @@
   }
 
   ::selection {
-    background: rgba(15, 23, 42, 0.12);
-    color: #020617;
+    background: rgba(0, 212, 170, 0.2);
+    color: #00D4AA;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+  }
+  
+  .glass-card {
+    @apply bg-[#1E293B]/80 backdrop-blur-md border border-white/10 rounded-2xl;
   }
 }
