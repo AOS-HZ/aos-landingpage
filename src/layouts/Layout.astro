@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const {
-  title = "Agents-of-Shield | AI Agent 安全运行环境",
+  title = "AOS | AI Agent 安全运行环境",
   description = "守护 Agent 可信运行，让人人安全使用 AI 能力"
 } = Astro.props;
 ---
@@ -20,10 +20,12 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <slot />
+    <div class="site-shell">
+      <slot />
+    </div>
   </body>
 </html>

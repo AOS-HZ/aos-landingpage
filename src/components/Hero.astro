@@ -1,89 +1,103 @@
 ---
 import Container from "./Container.astro";
 import Link from "./ui/Link.astro";
+
+const capabilityItems = [
+  {
+    title: "资产发现",
+    body: "统一盘点桌面端、CLI 与工作流里的 Agent。",
+  },
+  {
+    title: "权限治理",
+    body: "按任务上下文收紧 scope 与默认权限。",
+  },
+  {
+    title: "运行时策略",
+    body: "在 prompt、tool call 和 response 之间拦下高危动作。",
+  },
+];
+
 ---
 
 <Container>
-  <main class="relative grid place-items-center gap-12 pt-32 pb-16 md:pt-40 md:pb-32 lg:grid-cols-2 min-h-[90vh]">
-    <!-- Animated background glow behind text -->
-    <div class="absolute top-20 left-10 -z-10 h-72 w-72 rounded-full bg-primary/20 mix-blend-screen blur-3xl filter animate-float"></div>
-    <div class="absolute top-40 right-1/4 -z-10 h-72 w-72 rounded-full bg-secondary/20 mix-blend-screen blur-3xl filter animate-float" style="animation-delay: 2s;"></div>
-
-    <div class="order-1 w-full lg:order-1 relative z-10">
-      <h1 class="font-display text-5xl font-extrabold tracking-tight text-white md:text-6xl xl:text-[4rem] leading-[1.15] max-w-2xl">
-        <span class="text-gradient block mb-3">AI Agent</span>
-        <span class="block text-4xl md:text-5xl xl:text-5xl opacity-90 leading-tight">安全运行环境<br class="hidden sm:block"/>为每一个智能体保驾护航</span>
+  <main class="relative grid gap-10 pb-12 pt-[7rem] lg:grid-cols-[minmax(0,0.84fr)_minmax(0,1fr)] lg:items-center lg:gap-12 lg:pb-16 lg:pt-28">
+    <div class="relative z-10 max-w-[36rem] animate-[var(--animate-rise-in)]">
+      <div class="eyebrow">Focus on agent runtime security</div>
+      <h1 class="mt-6 max-w-[13.5ch] font-display text-[clamp(2.6rem,4.7vw,4rem)] font-normal leading-[1.02] tracking-[-0.04em] text-[var(--color-ink)]">
+        <span class="block">在一个面板里</span>
+        <span class="mt-2 block">
+          看清 <span class="font-black text-[var(--color-primary)]">Agent</span> 风险
+        </span>
       </h1>
-      <p class="mt-6 max-w-xl text-lg text-text-muted leading-relaxed">
-        守护 Agent 可信运行，让人人安全使用 AI 能力
+      <p class="mt-6 max-w-[34rem] text-[1.0625rem] leading-[1.72] tracking-[0.16px] text-[var(--color-gray-500)]">
+        先看到有哪些 Agent、用了哪些权限和 MCP，再决定哪些风险要扫描、哪些动作要拦。
       </p>
-      
-      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <Link href="#trial" style="primary" class="flex items-center justify-center w-full sm:w-auto group">
-          立即使用
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <Link href="/docs/aos-desktop/quick-start/" style="primary" class="w-full gap-2 sm:w-auto">
+          <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center">
+            <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="none">
+              <path d="M4.75 10h10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M10.5 4.75 15.75 10l-5.25 5.25" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span>立即试用</span>
         </Link>
-        <Link
-          size="lg"
-          style="outline"
-          href="#demo"
-          class="flex items-center justify-center w-full sm:w-auto gap-2"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-          </svg>
-          观看 Demo 视频
+        <Link href="/docs/" size="lg" style="outline" class="w-full gap-2 sm:w-auto">
+          <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center">
+            <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="none">
+              <path d="M6.25 4.75h7.5A1.5 1.5 0 0 1 15.25 6.25v8.5a.5.5 0 0 1-.5.5H7.25A2.5 2.5 0 0 0 4.75 17V6.25a1.5 1.5 0 0 1 1.5-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M7.75 8h4.75M7.75 10.75h4.75" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>阅读文档</span>
         </Link>
       </div>
 
-      <div class="mt-12 pt-8 border-t border-white/10">
-        <p class="text-sm font-medium text-text-muted mb-4">已获得 100+ 企业信任</p>
-        <div class="flex items-center gap-6 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-          <!-- Placeholder logos using text for now -->
-          <span class="font-display font-bold text-xl text-white">Acme Corp</span>
-          <span class="font-display font-bold text-xl text-white">TechFlow</span>
-          <span class="font-display font-bold text-xl text-white">Nexus</span>
-          <span class="font-display font-bold text-xl text-white">Stark Ind</span>
-        </div>
+      <div class="mt-8 grid gap-3">
+        {
+          capabilityItems.map((item) => (
+            <div class="flex items-start gap-3 rounded-[18px] border border-[var(--color-border)] bg-white/88 px-4 py-3">
+              <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-[2px] bg-[var(--color-primary)]"></span>
+              <div>
+                <div class="text-sm font-semibold leading-6 tracking-[0.08px] text-[var(--color-ink)]">{item.title}</div>
+                <div class="text-sm leading-6 tracking-[0.1px] text-[var(--color-gray-500)]">{item.body}</div>
+              </div>
+            </div>
+          ))
+        }
       </div>
+
     </div>
 
-    <div class="order-2 w-full lg:order-2 relative animate-fade-in-up" style="animation-delay: 0.1s;">
-      <!-- Glowing background behind image -->
-      <div class="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-primary/30 to-secondary/30 opacity-50 blur-3xl animate-pulse-slow"></div>
-      
-      <!-- Network topology nodes (CSS drawn) -->
-      <div class="absolute -top-10 -right-10 w-20 h-20 border border-primary/30 rounded-full flex items-center justify-center animate-float" style="animation-delay: 1s;">
-        <div class="w-2 h-2 bg-primary rounded-full animate-glow-pulse"></div>
-      </div>
-      <div class="absolute -bottom-10 -left-10 w-32 h-32 border border-secondary/30 rounded-full flex items-center justify-center animate-float" style="animation-delay: 2s;">
-        <div class="w-3 h-3 bg-secondary rounded-full animate-pulse"></div>
-      </div>
-      
-      <!-- The mockup container -->
-      <div class="relative rounded-2xl glass-card p-2 shadow-2xl shadow-primary/10 overflow-hidden">
-        <!-- Browser / Mac Top Bar -->
-        <div class="flex items-center gap-2 px-3 py-2.5">
-          <div class="flex gap-1.5">
-            <div class="h-3 w-3 rounded-full bg-red-500 border border-red-600"></div>
-            <div class="h-3 w-3 rounded-full bg-amber-500 border border-amber-600"></div>
-            <div class="h-3 w-3 rounded-full bg-green-500 border border-green-600"></div>
+    <div class="relative z-10 animate-[var(--animate-rise-in)]" style="animation-delay: 0.12s;">
+      <div class="surface-card relative ml-auto max-w-[39rem] overflow-hidden p-3 sm:p-4 lg:p-5">
+        <div class="mb-3 flex items-center justify-between px-1 sm:px-2">
+          <div class="flex gap-2">
+            <span class="h-3 w-3 rounded-full bg-[var(--color-red)]"></span>
+            <span class="h-3 w-3 rounded-full bg-[var(--color-yellow)]"></span>
+            <span class="h-3 w-3 rounded-full bg-[var(--color-green)]"></span>
+          </div>
+          <div class="text-[11px] font-semibold uppercase tracking-[1px] text-[var(--color-gray-300)]">
+            Product Preview
           </div>
         </div>
-        
-        <!-- Image wrapper -->
-        <div class="rounded-xl overflow-hidden border border-white/5 bg-[#0a0e27] shadow-inner relative">
+
+        <div class="overflow-hidden rounded-[22px] border border-[var(--color-border)] bg-white">
           <img
-            src="/assets/dashboard.png"
-            alt="Agents-of-Shield Dashboard"
-            class="w-full object-cover rounded-xl"
+            src="/assets/dashboard- preview.png"
+            alt="Agents of Shield security dashboard"
+            class="hero-preview-image h-[360px] w-full object-cover object-center sm:h-[420px] lg:h-[500px]"
           />
-          <!-- Scanning overlay effect -->
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent h-1/2 animate-[float_3s_ease-in-out_infinite]"></div>
         </div>
       </div>
     </div>
   </main>
 </Container>
+
+<style>
+  .hero-preview-image {
+    transform: scale(1.08);
+    transform-origin: center;
+  }
+</style>

@@ -4,37 +4,50 @@ import Link from "./ui/Link.astro";
 import ShieldMark from "./ShieldMark.astro";
 
 const menuitems = [
+  { title: "威胁面", path: "#threats" },
   { title: "产品功能", path: "#features" },
   { title: "技术架构", path: "#architecture" },
   { title: "客户案例", path: "#customers" },
 ];
 ---
 
-<div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 animate-fade-in-up">
-  <header class="flex w-full max-w-6xl items-center justify-between gap-4 rounded-full border border-white/10 bg-[#0F172A]/70 px-4 py-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-lg transition-all sm:px-6">
-    <a href="/" class="flex items-center gap-2.5 text-lg transition-transform hover:scale-105 group">
-      <ShieldMark class="h-8 w-8 text-primary drop-shadow-[0_0_10px_rgba(0,212,170,0.5)] transition-transform group-hover:rotate-12" />
-      <span class="hidden sm:inline-block">
-        <span class="font-display font-bold tracking-tight text-white">AgentsOf</span>
-        <span class="font-display text-primary font-bold ml-[-4px]">Shield</span>
-      </span>
-    </a>
+<div class="fixed inset-x-0 top-4 z-50 animate-[var(--animate-rise-in)]">
+  <Container>
+    <header class="surface-card flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <a href="/" class="group flex items-center gap-3">
+        <ShieldMark class="h-9 w-9 text-[var(--color-primary)] transition-transform duration-200 group-hover:-translate-y-0.5" />
+        <div>
+          <div class="font-display text-[1rem] font-semibold leading-none tracking-[0.08px] text-[var(--color-ink)] sm:text-[1.125rem]">
+            AOS
+          </div>
+          <div class="mt-1 text-[10px] font-medium uppercase tracking-[0.9px] text-[var(--color-gray-300)]">
+            Focus on agent runtime security
+          </div>
+        </div>
+      </a>
 
-    <nav class="hidden lg:flex flex-wrap items-center justify-center gap-1">
-      {
-        menuitems.map((item) => (
-          <a
-            href={item.path}
-            class="rounded-full px-4 py-2 text-[15px] text-text-muted transition-all hover:bg-white/5 hover:text-white"
-          >
-            {item.title}
-          </a>
-        ))
-      }
-    </nav>
+      <nav class="hidden lg:flex items-center gap-1">
+        {
+          menuitems.map((item) => (
+            <a
+              href={item.path}
+              class="rounded-[12px] px-4 py-3 text-[15px] font-medium tracking-[0.08px] text-[var(--color-gray-500)] transition-colors hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-ink)]"
+            >
+              {item.title}
+            </a>
+          ))
+        }
+      </nav>
 
-    <div class="flex items-center gap-3">
-      <Link href="#trial" size="md" style="primary" class="font-bold">立即使用</Link>
-    </div>
-  </header>
+      <div class="flex items-center gap-2">
+        <a
+          href="/docs/"
+          class="hidden min-h-[42px] items-center rounded-[12px] border border-[var(--color-border)] bg-white px-4 text-[15px] font-medium tracking-[0.08px] text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:bg-[var(--theme_surface-spotlight)] sm:inline-flex"
+        >
+          文档
+        </a>
+        <Link href="#cta" size="md" style="primary">开始体验</Link>
+      </div>
+    </header>
+  </Container>
 </div>

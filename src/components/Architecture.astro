@@ -1,117 +1,50 @@
 ---
 import Container from "./Container.astro";
+
+const supportedSources = [
+  "Codex",
+  "Claude Code",
+  "Antigravity",
+  "Open Code",
+  "Qwen Code",
+  "Gemini CLI",
+  "OpenClaw",
+];
 ---
 
-<section id="architecture" class="py-24 relative">
+<section id="architecture" class="relative py-18 lg:py-20">
   <Container>
-    <div class="text-center max-w-3xl mx-auto mb-20">
-      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-6">原生为 AI Agent 设计的<span class="text-gradient">安全架构</span></h2>
-      <p class="text-lg text-text-muted">深层解耦、无缝集成的多层防护体系</p>
+    <div class="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:items-end">
+      <div>
+        <div class="eyebrow">Supported Sources</div>
+        <h2 class="section-title mt-4">当前已支持的数据源</h2>
+      </div>
+      <p class="section-copy max-w-xl lg:justify-self-end">
+        目前可直接接入这些 agent 来源。
+      </p>
     </div>
 
-    <div class="relative max-w-4xl mx-auto">
-      <!-- Background elements -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[80px] pointer-events-none -z-10"></div>
-      
-      <!-- Central Architecture Diagram -->
-      <div class="flex flex-col gap-6 relative z-10">
-        
-        <!-- Layer 1: Application -->
-        <div class="glass-card p-6 text-center border-t-2 border-t-blue-400/50 hover:bg-white/5 transition-colors relative group">
-          <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-1 h-12 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <h3 class="text-xl font-bold text-white mb-2">应用层 (Applications)</h3>
-          <p class="text-text-muted text-sm">Copilot / AutoGPT / 自定义 Agent</p>
-        </div>
-
-        <!-- Connection -->
-        <div class="flex justify-center -my-3 z-0">
-          <div class="w-px h-10 bg-gradient-to-b from-blue-400/50 to-primary/50 relative">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+    <div class="surface-card mt-10 p-6 sm:p-8 lg:p-10">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-center">
+        <div>
+          <div class="text-[11px] font-semibold uppercase tracking-[1px] text-[var(--color-gray-300)]">
+            Code Agents
           </div>
-        </div>
-
-        <!-- Layer 2: ShieldAgent (Core) -->
-        <div class="glass-card p-8 border-2 border-primary shadow-[0_0_30px_rgba(0,212,170,0.15)] relative overflow-hidden group">
-          <!-- Animated gradient background -->
-          <div class="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-secondary/0 opacity-50 group-hover:opacity-100 transition-opacity"></div>
-          
-          <h3 class="text-2xl font-bold text-white mb-6 text-center flex items-center justify-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" />
-            </svg>
-            防护层 (ShieldAgent)
+          <h3 class="mt-4 max-w-[12ch] font-display text-[1.8rem] font-medium leading-[1.12] tracking-[0.02px] text-[var(--color-ink)]">
+            当前支持这些 agent
           </h3>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-[#0a0e27]/80 rounded-xl p-4 text-center border border-primary/20 hover:border-primary/50 transition-colors">
-              <div class="text-primary mb-2">🛡️</div>
-              <div class="text-sm font-bold text-white">输入检测</div>
-              <div class="text-xs text-text-muted mt-1">Prompt Guard</div>
-            </div>
-            <div class="bg-[#0a0e27]/80 rounded-xl p-4 text-center border border-primary/20 hover:border-primary/50 transition-colors">
-              <div class="text-primary mb-2">👁️</div>
-              <div class="text-sm font-bold text-white">行为分析</div>
-              <div class="text-xs text-text-muted mt-1">Behavior Analysis</div>
-            </div>
-            <div class="bg-[#0a0e27]/80 rounded-xl p-4 text-center border border-primary/20 hover:border-primary/50 transition-colors">
-              <div class="text-primary mb-2">🔑</div>
-              <div class="text-sm font-bold text-white">权限控制</div>
-              <div class="text-xs text-text-muted mt-1">Access Control</div>
-            </div>
-            <div class="bg-[#0a0e27]/80 rounded-xl p-4 text-center border border-primary/20 hover:border-primary/50 transition-colors">
-              <div class="text-primary mb-2">🎛️</div>
-              <div class="text-sm font-bold text-white">响应过滤</div>
-              <div class="text-xs text-text-muted mt-1">Output Filter</div>
-            </div>
-          </div>
+          <p class="mt-4 max-w-[32rem] text-sm leading-7 tracking-[0.08px] text-[var(--color-gray-500)]">
+            接入后会统一进入桌面端面板，继续查看资产、扫描结果和活动事件。
+          </p>
         </div>
 
-        <!-- Connection -->
-        <div class="flex justify-center -my-3 z-0">
-          <div class="w-px h-10 bg-gradient-to-b from-primary/50 to-purple-400/50 relative">
-            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-purple-400 rounded-full animate-ping"></div>
-          </div>
+        <div class="flex flex-wrap gap-3">
+          {
+            supportedSources.map((source) => (
+              <span class="data-pill min-h-[40px] bg-white px-4 text-[var(--color-gray-700)]">{source}</span>
+            ))
+          }
         </div>
-
-        <!-- Layer 3: Protocol -->
-        <div class="glass-card p-6 text-center border-b-2 border-b-purple-400/50 hover:bg-white/5 transition-colors">
-          <h3 class="text-xl font-bold text-white mb-2">协议层 (MCP / Function Call)</h3>
-          <div class="flex items-center justify-center gap-4 text-sm text-text-muted">
-            <span>工具发现</span>
-            <span class="w-1 h-1 bg-white/20 rounded-full"></span>
-            <span>调用拦截</span>
-            <span class="w-1 h-1 bg-white/20 rounded-full"></span>
-            <span>结果审计</span>
-          </div>
-        </div>
-
-        <!-- Connection -->
-        <div class="flex justify-center -my-3 z-0">
-          <div class="w-px h-10 bg-gradient-to-b from-purple-400/50 to-white/20"></div>
-        </div>
-
-        <!-- Layer 4: Infrastructure -->
-        <div class="glass-card p-6 text-center border border-white/5 bg-white/5 opacity-80 hover:opacity-100 transition-opacity">
-          <h3 class="text-lg font-bold text-white mb-2">基础设施 (Infrastructure)</h3>
-          <p class="text-text-muted text-sm">LLM API | 数据库 | 外部 API</p>
-        </div>
-
-      </div>
-
-      <!-- Floating Labels (Desktop only) -->
-      <div class="hidden lg:block absolute -left-12 xl:-left-24 top-1/4 bg-white/5 border border-white/10 rounded-full px-4 py-2 backdrop-blur-md text-sm text-white shadow-lg animate-float z-20">
-        亚毫秒级延迟
-      </div>
-      <div class="hidden lg:block absolute -right-8 xl:-right-20 top-1/3 bg-white/5 border border-white/10 rounded-full px-4 py-2 backdrop-blur-md text-sm text-white shadow-lg animate-float z-20" style="animation-delay: 1s;">
-        零信任架构
-      </div>
-      <div class="hidden lg:block absolute -left-8 xl:-left-16 bottom-1/4 bg-white/5 border border-white/10 rounded-full px-4 py-2 backdrop-blur-md text-sm text-white shadow-lg animate-float z-20" style="animation-delay: 2s;">
-        100+ 检测策略
-      </div>
-      <div class="hidden lg:block absolute -right-12 xl:-right-28 bottom-1/3 bg-white/5 border border-white/10 rounded-full px-4 py-2 backdrop-blur-md text-sm text-white shadow-lg animate-float z-20" style="animation-delay: 1.5s;">
-        多云与本地支持
-      </div>
-      <div class="hidden lg:block absolute left-1/2 -bottom-12 xl:-bottom-16 -translate-x-1/2 bg-white/5 border border-white/10 rounded-full px-4 py-2 backdrop-blur-md text-sm text-white shadow-lg animate-float z-20" style="animation-delay: 0.5s;">
-        一键集成主流框架
       </div>
     </div>
   </Container>
