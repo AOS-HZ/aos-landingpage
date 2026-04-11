@@ -1,6 +1,7 @@
 ---
 import Container from "./Container.astro";
 import Link from "./ui/Link.astro";
+import { DOCS_URL } from "../constants/site";
 ---
 
 <section id="cta" class="relative py-20 lg:py-24">
@@ -19,15 +20,15 @@ import Link from "./ui/Link.astro";
           </p>
           <div class="mt-5 flex flex-wrap gap-2">
             <span class="data-pill">5 分钟完成首轮扫描</span>
-            <span class="data-pill">桌面端与文档同一条路径</span>
+            <span class="data-pill">在线文档已迁移到独立站点</span>
           </div>
         </div>
 
         <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          <Link href="/docs/aos-desktop/quick-start/" style="primary">
+          <Link href={DOCS_URL} style="primary">
             快速开始
           </Link>
-          <Link href="/docs/" style="outline">
+          <Link href={DOCS_URL} style="outline">
             查看文档中心
           </Link>
         </div>

@@ -2,6 +2,7 @@
 import Container from "./Container.astro";
 import Link from "./ui/Link.astro";
 import ShieldMark from "./ShieldMark.astro";
+import { DOCS_URL } from "../constants/site";
 
 const menuitems = [
   { title: "威胁面", path: "#threats" },
@@ -41,7 +42,7 @@ const menuitems = [
 
       <div class="flex items-center gap-2">
         <a
-          href="/docs/"
+          href={DOCS_URL}
           class="hidden min-h-[42px] items-center rounded-[12px] border border-[var(--color-border)] bg-white px-4 text-[15px] font-medium tracking-[0.08px] text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:bg-[var(--theme_surface-spotlight)] sm:inline-flex"
         >
           文档

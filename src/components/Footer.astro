@@ -1,14 +1,15 @@
 ---
 import Container from "./Container.astro";
 import ShieldMark from "./ShieldMark.astro";
+import { DOCS_URL } from "../constants/site";
 
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
   { name: "产品功能", href: "#features" },
   { name: "技术架构", href: "#architecture" },
-  { name: "文档中心", href: "/docs/" },
-  { name: "Quick Start", href: "/docs/aos-desktop/quick-start/" },
+  { name: "文档中心", href: DOCS_URL },
+  { name: "Quick Start", href: DOCS_URL },
 ];
 ---
 

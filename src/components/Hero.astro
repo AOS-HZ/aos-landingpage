@@ -1,6 +1,7 @@
 ---
 import Container from "./Container.astro";
 import Link from "./ui/Link.astro";
+import { DOCS_URL } from "../constants/site";
 
 const capabilityItems = [
   {
@@ -34,7 +35,7 @@ const capabilityItems = [
       </p>
 
       <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-        <Link href="/docs/aos-desktop/quick-start/" style="primary" class="w-full gap-2 sm:w-auto">
+        <Link href={DOCS_URL} style="primary" class="w-full gap-2 sm:w-auto">
           <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center">
             <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="none">
               <path d="M4.75 10h10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
@@ -43,7 +44,7 @@ const capabilityItems = [
           </span>
           <span>立即试用</span>
         </Link>
-        <Link href="/docs/" size="lg" style="outline" class="w-full gap-2 sm:w-auto">
+        <Link href={DOCS_URL} size="lg" style="outline" class="w-full gap-2 sm:w-auto">
           <span class="inline-flex h-4 w-4 shrink-0 items-center justify-center">
             <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4" fill="none">
               <path d="M6.25 4.75h7.5A1.5 1.5 0 0 1 15.25 6.25v8.5a.5.5 0 0 1-.5.5H7.25A2.5 2.5 0 0 0 4.75 17V6.25a1.5 1.5 0 0 1 1.5-1.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
