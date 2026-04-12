@@ -5,11 +5,13 @@ import "../styles/global.css";
 export interface Props {
   title?: string;
   description?: string;
+  bodyClass?: string;
 }
 
 const {
   title = "AOS | AI Agent 安全运行环境",
-  description = "守护 Agent 可信运行，让人人安全使用 AI 能力"
+  description = "守护 Agent 可信运行，让人人安全使用 AI 能力",
+  bodyClass = ""
 } = Astro.props;
 ---
 
@@ -23,7 +25,7 @@ const {
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
-  <body>
+  <body class={bodyClass}>
     <div class="site-shell">
       <slot />
     </div>

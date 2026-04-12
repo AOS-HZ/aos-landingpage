@@ -1,18 +1,79 @@
 ---
 import Container from "./Container.astro";
+import Link from "./ui/Link.astro";
 ---
 
-<section id="cta" class="relative py-20 lg:py-24">
+<section id="cta" class="relative pt-10 pb-8 lg:pt-12 lg:pb-10">
   <Container>
     <div class="rounded-[34px] border border-[rgba(24,29,38,0.08)] bg-white px-6 py-10 shadow-[0_24px_60px_rgba(15,23,42,0.04)] sm:px-8 lg:px-14 lg:py-12">
-      <div class="max-w-[760px]">
-        <h2 class="font-display text-[clamp(2rem,3.8vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.045em] text-[var(--color-ink)]">
-          从桌面端开始
-        </h2>
-        <p class="mt-4 max-w-[34rem] text-[1rem] leading-7 tracking-[0.01em] text-[var(--color-gray-500)] sm:text-[1.0625rem]">
-          先接入环境，快速完成首轮扫描。
-        </p>
+      <div class="cta-card">
+        <div class="max-w-[760px]">
+          <h2 class="font-display text-[clamp(2rem,3.8vw,3.2rem)] font-medium leading-[1.04] tracking-[-0.045em] text-[var(--color-ink)]">
+            从桌面端开始
+          </h2>
+          <p class="mt-4 max-w-[34rem] text-[1rem] leading-7 tracking-[0.01em] text-[var(--color-gray-500)] sm:text-[1.0625rem]">
+            先接入环境，快速完成首轮扫描。
+          </p>
+        </div>
+
+        <div class="cta-card__action">
+          <Link
+            href="/download"
+            size="lg"
+            style="secondary"
+            class="cta-card__download w-full rounded-full px-7 !shadow-none sm:w-auto"
+          >
+            <svg aria-hidden="true" viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+              <path d="M10 3.75v8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              <path d="m6.75 9.75 3.25 3.5 3.25-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M4.75 15.75h10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            下载桌面端
+          </Link>
+        </div>
       </div>
     </div>
   </Container>
 </section>
+
+<style>
+  .cta-card {
+    display: grid;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .cta-card__action {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .cta-card__download {
+    min-height: 54px;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    border: 0;
+    background: var(--color-ink);
+    color: #ffffff;
+  }
+
+  .cta-card__download:hover {
+    border: 0;
+    background: var(--color-gray-800);
+    color: #ffffff;
+  }
+
+  @media (min-width: 1024px) {
+    .cta-card {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 32px;
+    }
+
+    .cta-card__action {
+      justify-content: flex-end;
+    }
+  }
+</style>

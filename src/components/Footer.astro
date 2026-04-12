@@ -1,19 +1,44 @@
 ---
 import Container from "./Container.astro";
 import ShieldMark from "./ShieldMark.astro";
-import { DOCS_URL } from "../constants/site";
+import { AOS_DESKTOP_QUICK_START_URL, DOCS_URL } from "../constants/site";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
-  { name: "产品功能", href: "#features" },
-  { name: "技术架构", href: "#architecture" },
+  { name: "产品功能", href: "/#features" },
+  { name: "技术架构", href: "/#architecture" },
   { name: "文档中心", href: DOCS_URL },
-  { name: "Quick Start", href: DOCS_URL },
+  { name: "Quick Start", href: AOS_DESKTOP_QUICK_START_URL },
 ];
 ---
 
-<footer class="border-t border-[var(--color-border)] py-12 sm:py-16">
+{compact ? (
+  <footer class="border-t border-[var(--color-border)] py-6 mt-auto">
+    <Container class="flex flex-col-reverse items-center justify-between gap-4 md:flex-row">
+      <div class="text-center text-sm tracking-[0.08px] text-[var(--color-gray-500)]">
+        © {currentYear} AOS. All rights reserved.
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+        {footerLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-medium leading-6 tracking-[0.01em] text-[var(--color-gray-500)] transition-colors hover:text-[var(--color-ink)]"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </Container>
+  </footer>
+) : (
+  <footer class="border-t border-[var(--color-border)] py-12 sm:py-16">
   <Container>
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
       <div class="max-w-md">
@@ -51,3 +76,4 @@ const footerLinks = [
     </div>
   </Container>
 </footer>
+)}

@@ -16,7 +16,6 @@ const tabs = [
     glow: "rgba(36, 87, 211, 0.26)",
     labels: ["DESKTOP", "AGENTS", "CLI"],
     positions: ["14% 10%", "56% 6%", "90% 14%"],
-    badge: "25 个环境",
   },
   {
     id: "audit",
@@ -32,7 +31,6 @@ const tabs = [
     glow: "rgba(122, 61, 255, 0.24)",
     labels: ["SOURCE", "SKILLS", "MCP"],
     positions: ["12% 8%", "54% 8%", "88% 8%"],
-    badge: "8 项本地 skills",
   },
   {
     id: "runtime",
@@ -48,7 +46,6 @@ const tabs = [
     glow: "rgba(15, 122, 113, 0.24)",
     labels: ["SESSIONS", "TOOLS", "RUNTIME"],
     positions: ["18% 10%", "54% 14%", "88% 8%"],
-    badge: "39 次拦截",
   },
   {
     id: "permissions",
@@ -64,20 +61,19 @@ const tabs = [
     glow: "rgba(163, 60, 40, 0.24)",
     labels: ["POLICY", "QUARANTINE", "RESTORE"],
     positions: ["12% 18%", "54% 16%", "88% 12%"],
-    badge: "全程可追溯",
   },
 ];
 ---
 
-<section id="features" class="relative py-18 lg:py-22">
+<section id="features" class="relative py-10 lg:py-12">
   <Container>
-    <div class="mx-auto max-w-[720px] text-center">
-      <div class="eyebrow justify-center">Core Workflow</div>
-      <h2 class="section-title mt-4">四个核心能力</h2>
-    </div>
-
-    <div id="feature-showcase" class="feature-showcase mt-10 overflow-hidden rounded-[40px] border border-[rgba(24,29,38,0.08)] bg-white shadow-[0_26px_60px_rgba(15,23,42,0.05)]">
+    <div id="feature-showcase" class="feature-showcase overflow-hidden rounded-[40px] border border-[rgba(24,29,38,0.08)] bg-white shadow-[0_26px_60px_rgba(15,23,42,0.05)]">
       <div class="feature-showcase__nav">
+        <div class="feature-showcase__intro">
+          <div class="eyebrow">Core Workflow</div>
+          <h2 class="feature-showcase__title">四个核心能力</h2>
+        </div>
+
         {
           tabs.map((tab, index) => (
             <button
@@ -128,8 +124,6 @@ const tabs = [
                   <span class="feature-visual-card__label">{tab.labels[2]}</span>
                   <img src={tab.image} alt="" style={`object-position:${tab.positions[2]};`} />
                 </div>
-
-                <div class="feature-visual-badge">{tab.badge}</div>
               </div>
             </article>
           ))
@@ -142,13 +136,33 @@ const tabs = [
 <style>
   .feature-showcase {
     display: grid;
-    grid-template-columns: minmax(0, 332px) minmax(0, 1fr);
-    min-height: 860px;
+    grid-template-columns: minmax(0, 318px) minmax(0, 1fr);
+    height: min(74vh, 760px);
+    min-height: 680px;
   }
 
   .feature-showcase__nav {
-    padding: 28px 44px 28px 38px;
+    display: flex;
+    flex-direction: column;
+    padding: 34px 36px 28px 34px;
     background: #fff;
+  }
+
+  .feature-showcase__intro {
+    margin-bottom: 12px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(24, 29, 38, 0.08);
+  }
+
+  .feature-showcase__title {
+    margin: 14px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 2.8vw, 2.85rem);
+    font-weight: 500;
+    line-height: 1.06;
+    letter-spacing: -0.05em;
+    color: var(--color-ink);
+    text-wrap: balance;
   }
 
   .feature-nav-item {
@@ -206,14 +220,14 @@ const tabs = [
 
   .feature-showcase__stage {
     position: relative;
-    min-height: 860px;
+    min-height: 0;
   }
 
   .feature-panel {
     position: absolute;
-    inset: 18px 18px 18px 0;
+    inset: 14px 14px 14px 0;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 28px;
     background: var(--feature-panel-bg);
     opacity: 0;
     pointer-events: none;
@@ -245,8 +259,8 @@ const tabs = [
     z-index: 2;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 24px;
-    padding: 52px 56px 0;
+    gap: 20px;
+    padding: 42px 44px 0;
     color: white;
   }
 
@@ -260,9 +274,9 @@ const tabs = [
 
   .feature-panel__title {
     margin: 14px 0 0;
-    max-width: 14ch;
+    max-width: 12ch;
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+    font-size: clamp(2rem, 3.4vw, 3rem);
     font-weight: 500;
     line-height: 1.02;
     letter-spacing: -0.05em;
@@ -270,10 +284,10 @@ const tabs = [
   }
 
   .feature-panel__description {
-    margin: 14px 0 0;
-    max-width: 28ch;
-    font-size: 1.05rem;
-    line-height: 1.55;
+    margin: 12px 0 0;
+    max-width: 24ch;
+    font-size: 1rem;
+    line-height: 1.5;
     letter-spacing: -0.01em;
     opacity: 0.86;
   }
@@ -281,13 +295,13 @@ const tabs = [
   .feature-panel__cta {
     align-self: start;
     display: inline-flex;
-    min-height: 76px;
+    min-height: 64px;
     align-items: center;
     justify-content: center;
-    border-radius: 22px;
+    border-radius: 18px;
     background: rgba(255, 255, 255, 0.96);
-    padding: 0 30px;
-    font-size: 1rem;
+    padding: 0 24px;
+    font-size: 0.96rem;
     font-weight: 600;
     color: var(--color-ink);
     box-shadow: 0 18px 40px rgba(13, 20, 33, 0.12);
@@ -339,11 +353,11 @@ const tabs = [
   }
 
   .feature-visual-card--back {
-    left: 12%;
-    bottom: -2%;
-    width: 250px;
-    height: 430px;
-    transform: translate3d(-20px, 48px, 0) rotate(-28deg);
+    left: 10%;
+    bottom: -4%;
+    width: 220px;
+    height: 356px;
+    transform: translate3d(-18px, 42px, 0) rotate(-28deg);
   }
 
   .feature-panel.is-active .feature-visual-card--back {
@@ -352,11 +366,11 @@ const tabs = [
   }
 
   .feature-visual-card--mid {
-    left: 40%;
-    bottom: -1%;
-    width: 254px;
-    height: 438px;
-    transform: translate3d(-8px, 54px, 0) rotate(-16deg);
+    left: 38%;
+    bottom: -3%;
+    width: 226px;
+    height: 368px;
+    transform: translate3d(-8px, 48px, 0) rotate(-16deg);
   }
 
   .feature-panel.is-active .feature-visual-card--mid {
@@ -365,11 +379,11 @@ const tabs = [
   }
 
   .feature-visual-card--front {
-    right: 10%;
-    bottom: -1%;
-    width: 286px;
-    height: 446px;
-    transform: translate3d(14px, 60px, 0) rotate(-7deg);
+    right: 8%;
+    bottom: -3%;
+    width: 248px;
+    height: 378px;
+    transform: translate3d(14px, 52px, 0) rotate(-7deg);
   }
 
   .feature-panel.is-active .feature-visual-card--front {
@@ -377,51 +391,154 @@ const tabs = [
     transition-delay: 0.22s;
   }
 
-  .feature-visual-badge {
-    position: absolute;
-    left: 48%;
-    bottom: 8%;
-    z-index: 3;
-    display: inline-flex;
-    min-height: 128px;
-    min-width: 138px;
-    align-items: end;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.16);
-    padding: 18px 20px;
-    font-size: 1.02rem;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    color: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 18px 40px rgba(11, 19, 31, 0.12);
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    transform: translate3d(0, 48px, 0);
-    transition:
-      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.45s ease;
+  .feature-panel[data-feature-id="audit"] {
+    transform: translate3d(34px, 10px, 0) scale(0.985);
   }
 
-  .feature-panel.is-active .feature-visual-badge {
+  .feature-panel[data-feature-id="audit"].is-active {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .feature-panel[data-feature-id="audit"] .feature-panel__head > div,
+  .feature-panel[data-feature-id="audit"] .feature-panel__cta {
+    opacity: 0;
+    transition:
+      transform 0.62s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.32s ease;
+  }
+
+  .feature-panel[data-feature-id="audit"] .feature-panel__head > div {
+    transform: translate3d(-28px, 0, 0);
+  }
+
+  .feature-panel[data-feature-id="audit"] .feature-panel__cta {
+    transform: translate3d(24px, 0, 0);
+  }
+
+  .feature-panel[data-feature-id="audit"].is-active .feature-panel__head > div,
+  .feature-panel[data-feature-id="audit"].is-active .feature-panel__cta {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    transition-delay: 0.28s;
+  }
+
+  .feature-panel[data-feature-id="audit"].is-active .feature-panel__head > div {
+    transition-delay: 0.06s;
+  }
+
+  .feature-panel[data-feature-id="audit"].is-active .feature-panel__cta {
+    transition-delay: 0.12s;
+  }
+
+  .feature-panel[data-feature-id="audit"] .feature-visual-card--back {
+    transform: translate3d(-54px, 56px, 0) rotate(-42deg) scale(0.92);
+  }
+
+  .feature-panel[data-feature-id="audit"].is-active .feature-visual-card--back {
+    transform: translate3d(-10px, -6px, 0) rotate(-34deg) scale(1);
+    transition-delay: 0.03s;
+  }
+
+  .feature-panel[data-feature-id="audit"] .feature-visual-card--mid {
+    transform: translate3d(6px, 78px, 0) rotate(-4deg) scale(0.9);
+  }
+
+  .feature-panel[data-feature-id="audit"].is-active .feature-visual-card--mid {
+    transform: translate3d(6px, -4px, 0) rotate(-8deg) scale(1);
+    transition-delay: 0.14s;
+  }
+
+  .feature-panel[data-feature-id="audit"] .feature-visual-card--front {
+    transform: translate3d(62px, 52px, 0) rotate(14deg) scale(0.92);
+  }
+
+  .feature-panel[data-feature-id="audit"].is-active .feature-visual-card--front {
+    transform: translate3d(14px, -6px, 0) rotate(5deg) scale(1);
+    transition-delay: 0.24s;
+  }
+
+  .feature-panel[data-feature-id="runtime"] {
+    transform: translate3d(0, 38px, 0) scale(0.972);
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  .feature-panel[data-feature-id="runtime"] .feature-panel__head > div,
+  .feature-panel[data-feature-id="runtime"] .feature-panel__cta {
+    opacity: 0;
+    transition:
+      transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.32s ease;
+  }
+
+  .feature-panel[data-feature-id="runtime"] .feature-panel__head > div {
+    transform: translate3d(0, -20px, 0);
+  }
+
+  .feature-panel[data-feature-id="runtime"] .feature-panel__cta {
+    transform: translate3d(0, 20px, 0);
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__head > div,
+  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__cta {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__head > div {
+    transition-delay: 0.06s;
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__cta {
+    transition-delay: 0.14s;
+  }
+
+  .feature-panel[data-feature-id="runtime"] .feature-visual-card--back {
+    transform: translate3d(-8px, 90px, 0) rotate(-10deg) scale(0.9);
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active .feature-visual-card--back {
+    transform: translate3d(-12px, 6px, 0) rotate(-18deg) scale(1);
+    transition-delay: 0.04s;
+  }
+
+  .feature-panel[data-feature-id="runtime"] .feature-visual-card--mid {
+    transform: translate3d(0, 118px, 0) rotate(2deg) scale(0.88);
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active .feature-visual-card--mid {
+    transform: translate3d(0, -10px, 0) rotate(-2deg) scale(1);
+    transition-delay: 0.2s;
+  }
+
+  .feature-panel[data-feature-id="runtime"] .feature-visual-card--front {
+    transform: translate3d(18px, 108px, 0) rotate(10deg) scale(0.9);
+  }
+
+  .feature-panel[data-feature-id="runtime"].is-active .feature-visual-card--front {
+    transform: translate3d(8px, 2px, 0) rotate(6deg) scale(1);
+    transition-delay: 0.12s;
   }
 
   @media (max-width: 1279px) {
     .feature-showcase {
       grid-template-columns: minmax(0, 1fr);
-      min-height: auto;
+      height: auto;
+      min-height: 0;
     }
 
     .feature-showcase__nav {
-      padding: 24px;
+      padding: 24px 24px 18px;
+    }
+
+    .feature-showcase__intro {
+      margin-bottom: 10px;
+      padding-bottom: 18px;
     }
 
     .feature-showcase__stage {
-      min-height: 720px;
+      min-height: 640px;
     }
 
     .feature-panel {
@@ -435,16 +552,24 @@ const tabs = [
     }
 
     .feature-showcase__nav {
-      padding: 18px 20px 10px;
+      padding: 18px 20px 12px;
+    }
+
+    .feature-showcase__intro {
+      padding-bottom: 16px;
+    }
+
+    .feature-showcase__title {
+      font-size: clamp(1.8rem, 7vw, 2.4rem);
     }
 
     .feature-nav-item {
       grid-template-columns: 12px 30px minmax(0, 1fr);
-      padding: 16px 0;
+      padding: 14px 0;
     }
 
     .feature-showcase__stage {
-      min-height: 620px;
+      min-height: 560px;
     }
 
     .feature-panel {
@@ -454,7 +579,7 @@ const tabs = [
 
     .feature-panel__head {
       grid-template-columns: minmax(0, 1fr);
-      padding: 26px 24px 0;
+      padding: 24px 24px 0;
     }
 
     .feature-panel__title {
@@ -492,14 +617,6 @@ const tabs = [
       height: 310px;
     }
 
-    .feature-visual-badge {
-      left: 40%;
-      bottom: 10%;
-      min-height: 88px;
-      min-width: 108px;
-      padding: 14px 16px;
-      font-size: 0.88rem;
-    }
   }
 </style>
 
