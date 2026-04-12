@@ -15,7 +15,7 @@ const footerLinks = [
 
 <footer class="border-t border-[var(--color-border)] py-12 sm:py-16">
   <Container>
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
       <div class="max-w-md">
         <a href="/" class="flex items-center gap-3">
           <ShieldMark class="h-9 w-9 text-[var(--color-primary)]" />
@@ -34,11 +34,11 @@ const footerLinks = [
         </p>
       </div>
 
-      <div class="grid gap-3 sm:grid-cols-2">
+      <div class="flex flex-wrap gap-x-8 gap-y-3 lg:justify-end">
         {footerLinks.map((link) => (
           <a
             href={link.href}
-            class="rounded-[12px] border border-[var(--color-border)] px-4 py-3 text-sm leading-6 tracking-[0.08px] text-[var(--color-gray-500)] transition-colors hover:text-[var(--color-ink)]"
+            class="text-sm font-medium leading-6 tracking-[0.01em] text-[var(--color-gray-500)] transition-colors hover:text-[var(--color-ink)]"
           >
             {link.name}
           </a>

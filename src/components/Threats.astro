@@ -31,32 +31,41 @@ const threats = [
 
 <section id="threats" class="relative py-20 lg:py-24">
   <Container>
-    <div class="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:items-end">
-      <div>
-        <div class="eyebrow">Threat Model</div>
-        <h2 class="section-title mt-4">三类核心风险</h2>
-      </div>
-      <p class="section-copy max-w-xl lg:justify-self-end">
-        Prompt、权限和第三方能力，是 Agent 最常见的风险来源。
+    <div class="mx-auto max-w-[760px] text-center">
+      <div class="eyebrow justify-center">Risk Model</div>
+      <h2 class="section-title mt-4">三类最常见的 Agent 风险来源</h2>
+      <p class="section-copy copy-measure copy-measure--center mt-5">
+        Prompt、权限和第三方来源，是 Agent 最常见的三类风险入口，也是运行时治理最先要收住的地方。
       </p>
     </div>
 
     <div class="mt-10 grid gap-5 lg:grid-cols-3">
       {
-        threats.map((threat) => (
+        threats.map((threat, index) => (
           <article class="surface-card p-6 lg:p-7">
-            <span class="accent-chip" style={threat.tone}>{threat.label}</span>
-            <div class="mt-5 font-display text-[2.2rem] font-medium leading-none tracking-[0.08px]" style={`color: ${threat.tone.split("color: ")[1].replace(";", "")};`}>
-              {threat.metric}
+            <div class="flex items-center justify-between gap-4">
+              <span class="accent-chip" style={threat.tone}>{threat.label}</span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-gray-300)]">
+                0{index + 1}
+              </span>
             </div>
-            <h3 class="mt-4 font-display text-[1.45rem] font-medium leading-[1.2] tracking-[0.04px] text-[var(--color-ink)]">
+            <h3 class="mt-6 font-display text-[1.55rem] font-medium leading-[1.16] tracking-[-0.03em] text-[var(--color-ink)]">
               {threat.title}
             </h3>
-            <p class="mt-3 text-sm leading-6 tracking-[0.08px] text-[var(--color-gray-500)]">
+            <p class="mt-3 text-[15px] leading-7 tracking-[0.01em] text-[var(--color-gray-500)]">
               {threat.description}
             </p>
-            <div class="mt-6 border-t border-[var(--color-border)] pt-4 text-sm leading-6 tracking-[0.08px] text-[var(--color-gray-700)]">
-              {threat.response}
+
+            <div class="mt-7 rounded-[22px] border border-[rgba(24,29,38,0.06)] bg-[var(--color-surface-alt)] p-5">
+              <div class="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--color-gray-300)]">
+                Key signal
+              </div>
+              <div class="mt-3 font-display text-[2rem] font-medium leading-none tracking-[-0.04em]" style={`color: ${threat.tone.split("color: ")[1].replace(";", "")};`}>
+                {threat.metric}
+              </div>
+              <div class="mt-4 text-sm leading-6 tracking-[0.01em] text-[var(--color-gray-700)]">
+                {threat.response}
+              </div>
             </div>
           </article>
         ))

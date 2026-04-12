@@ -5,50 +5,50 @@ import ShieldMark from "./ShieldMark.astro";
 import { DOCS_URL } from "../constants/site";
 
 const menuitems = [
-  { title: "威胁面", path: "#threats" },
-  { title: "产品功能", path: "#features" },
-  { title: "技术架构", path: "#architecture" },
+  { title: "兼容生态", path: "#architecture" },
+  { title: "核心能力", path: "#features" },
+  { title: "风险治理", path: "#threats" },
   { title: "客户案例", path: "#customers" },
 ];
 ---
 
-<div class="fixed inset-x-0 top-4 z-50 animate-[var(--animate-rise-in)]">
-  <Container>
-    <header class="surface-card flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
-      <a href="/" class="group flex items-center gap-3">
-        <ShieldMark class="h-9 w-9 text-[var(--color-primary)] transition-transform duration-200 group-hover:-translate-y-0.5" />
-        <div>
-          <div class="font-display text-[1rem] font-semibold leading-none tracking-[0.08px] text-[var(--color-ink)] sm:text-[1.125rem]">
-            AOS
-          </div>
-          <div class="mt-1 text-[10px] font-medium uppercase tracking-[0.9px] text-[var(--color-gray-300)]">
-            Focus on agent runtime security
-          </div>
+<header class="border-b border-[rgba(24,29,38,0.08)] bg-white/96 animate-[var(--animate-rise-in)]">
+  <Container class="flex min-h-[80px] items-center justify-between gap-4 lg:min-h-[92px]">
+    <a href="/" class="group flex items-center gap-3">
+      <ShieldMark class="h-10 w-10 text-[var(--color-primary)] transition-transform duration-200 group-hover:-translate-y-0.5" />
+      <div>
+        <div class="font-display text-[1.05rem] font-semibold leading-none tracking-[-0.02em] text-[var(--color-ink)] sm:text-[1.18rem]">
+          AOS
         </div>
-      </a>
-
-      <nav class="hidden lg:flex items-center gap-1">
-        {
-          menuitems.map((item) => (
-            <a
-              href={item.path}
-              class="rounded-[12px] px-4 py-3 text-[15px] font-medium tracking-[0.08px] text-[var(--color-gray-500)] transition-colors hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-ink)]"
-            >
-              {item.title}
-            </a>
-          ))
-        }
-      </nav>
-
-      <div class="flex items-center gap-2">
-        <a
-          href={DOCS_URL}
-          class="hidden min-h-[42px] items-center rounded-[12px] border border-[var(--color-border)] bg-white px-4 text-[15px] font-medium tracking-[0.08px] text-[var(--color-ink)] transition-colors hover:border-[var(--color-primary)] hover:bg-[var(--theme_surface-spotlight)] sm:inline-flex"
-        >
-          文档
-        </a>
-        <Link href="#cta" size="md" style="primary">开始体验</Link>
+        <div class="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-gray-300)]">
+          Agent Security Ops
+        </div>
       </div>
-    </header>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex">
+      {
+        menuitems.map((item) => (
+          <a
+            href={item.path}
+            class="rounded-[999px] px-4 py-3 text-[15px] font-medium tracking-[-0.01em] text-[var(--color-gray-500)] transition-colors hover:text-[var(--color-ink)]"
+          >
+            {item.title}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a
+        href={DOCS_URL}
+        class="hidden min-h-[44px] items-center rounded-[14px] border border-[var(--color-border-strong)] bg-white px-5 text-[15px] font-medium tracking-[-0.01em] text-[var(--color-ink)] transition-colors hover:border-[var(--color-ink)] sm:inline-flex"
+      >
+        阅读文档
+      </a>
+      <Link href="#cta" size="md" style="secondary" class="rounded-[14px] px-5 shadow-none">
+        开始体验
+      </Link>
+    </div>
   </Container>
-</div>
+</header>

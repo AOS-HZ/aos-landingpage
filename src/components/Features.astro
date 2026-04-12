@@ -5,273 +5,563 @@ const tabs = [
   {
     id: "inventory",
     number: "01",
-    label: "Inventory",
-    title: "Agent 资产发现",
-    description: "统一盘点桌面端与 CLI Agent。",
+    nav: "资产发现",
+    eyebrow: "Inventory",
+    title: "先把 Agent 资产盘清",
+    description: "桌面端与 CLI 统一接入。",
+    cta: "查看资产视图",
     image: "/assets/dashboard.png",
-    imagePosition: "center top",
-    chipStyle: "background: rgba(27, 97, 201, 0.1); color: var(--color-primary);",
+    theme:
+      "linear-gradient(180deg, #2457d3 0%, #163f9e 100%)",
+    glow: "rgba(36, 87, 211, 0.26)",
+    labels: ["DESKTOP", "AGENTS", "CLI"],
+    positions: ["14% 10%", "56% 6%", "90% 14%"],
+    badge: "25 个环境",
   },
   {
-    id: "supply-chain",
+    id: "audit",
     number: "02",
-    label: "MCP Audit",
-    title: "Skills 安全扫描",
-    description: "识别第三方能力的风险面。",
+    nav: "第三方扫描",
+    eyebrow: "Skills Audit",
+    title: "把第三方能力风险提早暴露出来",
+    description: "skills 与 MCP 来源一眼看清。",
+    cta: "查看扫描结果",
     image: "/assets/skills-management.png",
-    imagePosition: "center top",
-    chipStyle: "background: rgba(122, 61, 255, 0.12); color: var(--color-purple);",
+    theme:
+      "linear-gradient(180deg, #7a3dff 0%, #5f27d8 100%)",
+    glow: "rgba(122, 61, 255, 0.24)",
+    labels: ["SOURCE", "SKILLS", "MCP"],
+    positions: ["12% 8%", "54% 8%", "88% 8%"],
+    badge: "8 项本地 skills",
   },
   {
     id: "runtime",
     number: "03",
-    label: "Runtime Policy",
-    title: "运行时防护",
-    description: "在动作发生前做策略裁决。",
+    nav: "运行时监控",
+    eyebrow: "Runtime Center",
+    title: "把异常调用与慢工具放进同一个视图",
+    description: "风险、会话和耗时同屏展示。",
+    cta: "查看运行时面板",
     image: "/assets/activity-monitor.png",
-    imagePosition: "center top",
-    chipStyle: "background: rgba(0, 100, 0, 0.1); color: var(--color-green);",
+    theme:
+      "linear-gradient(180deg, #0f7a71 0%, #075e58 100%)",
+    glow: "rgba(15, 122, 113, 0.24)",
+    labels: ["SESSIONS", "TOOLS", "RUNTIME"],
+    positions: ["18% 10%", "54% 14%", "88% 8%"],
+    badge: "39 次拦截",
   },
   {
     id: "permissions",
     number: "04",
-    label: "Access Control",
-    title: "权限治理",
-    description: "让最小权限真正执行。",
+    nav: "权限治理",
+    eyebrow: "Quarantine Zone",
+    title: "高风险能力可隔离、恢复与留痕",
+    description: "权限治理不再停留在纸面上。",
+    cta: "查看治理流程",
     image: "/assets/quarantine-zone.png",
-    imagePosition: "center top",
-    chipStyle: "background: rgba(255, 107, 0, 0.12); color: var(--color-orange);",
-  },
-  {
-    id: "audit",
-    number: "05",
-    label: "Audit Trail",
-    title: "审计与合规",
-    description: "把每次决策都留下证据。",
-    image: "/assets/risk-analysis.png",
-    imagePosition: "center top",
-    chipStyle: "background: rgba(237, 82, 203, 0.12); color: var(--color-pink);",
+    theme:
+      "linear-gradient(180deg, #a33c28 0%, #862d1b 100%)",
+    glow: "rgba(163, 60, 40, 0.24)",
+    labels: ["POLICY", "QUARANTINE", "RESTORE"],
+    positions: ["12% 18%", "54% 16%", "88% 12%"],
+    badge: "全程可追溯",
   },
 ];
 ---
 
-<section id="features" class="relative py-16 lg:py-18">
+<section id="features" class="relative py-18 lg:py-22">
   <Container>
-    <div class="grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] lg:items-end">
-      <div>
-        <div class="eyebrow">Product Layers</div>
-        <h2 class="section-title mt-4">五项核心能力</h2>
-      </div>
-      <p class="section-copy max-w-xl lg:justify-self-end">
-        先盘点，再扫描，再执行策略。
-      </p>
+    <div class="mx-auto max-w-[720px] text-center">
+      <div class="eyebrow justify-center">Core Workflow</div>
+      <h2 class="section-title mt-4">四个核心能力</h2>
     </div>
 
-    <div class="mt-8 grid gap-4 xl:grid-cols-[286px_minmax(0,1fr)] xl:items-stretch">
-      <div class="grid gap-2 content-start" id="features-tabs">
+    <div id="feature-showcase" class="feature-showcase mt-10 overflow-hidden rounded-[40px] border border-[rgba(24,29,38,0.08)] bg-white shadow-[0_26px_60px_rgba(15,23,42,0.05)]">
+      <div class="feature-showcase__nav">
         {
           tabs.map((tab, index) => (
             <button
-              class:list={["feature-tab", index === 0 && "is-active"]}
-              data-feature-tab
-              data-image={tab.image}
-              data-title={tab.title}
-              data-image-position={tab.imagePosition}
+              type="button"
+              class:list={["feature-nav-item", index === 0 && "is-active"]}
+              data-feature-trigger
+              data-feature-id={tab.id}
+              aria-pressed={index === 0 ? "true" : "false"}
             >
-              <div class="feature-tab-top">
-                <div class="feature-tab-meta">{tab.number}</div>
-                <span class="feature-tab-chip" style={tab.chipStyle}>{tab.label}</span>
-              </div>
-              <h3 class="mt-2.5 font-display text-[1rem] font-medium leading-[1.18] tracking-[0.08px]">
-                {tab.title}
-              </h3>
-              <p class="mt-1 text-[12px] leading-[1.45]">{tab.description}</p>
+              <span class="feature-nav-item__marker"></span>
+              <span class="feature-nav-item__number">{tab.number}</span>
+              <span class="feature-nav-item__label">{tab.nav}</span>
             </button>
           ))
         }
       </div>
 
-      <div id="feature-preview-card" class="surface-card overflow-hidden p-4 sm:p-5 lg:p-6 xl:h-full">
-        <div class="surface-panel relative flex h-full min-h-0 flex-col overflow-hidden p-4 sm:p-5">
-          <div class="mb-4 flex items-center justify-between border-b border-[var(--color-border)] pb-3">
-            <div class="flex gap-2">
-              <span class="h-3 w-3 rounded-full bg-[var(--color-red)]"></span>
-              <span class="h-3 w-3 rounded-full bg-[var(--color-yellow)]"></span>
-              <span class="h-3 w-3 rounded-full bg-[var(--color-green)]"></span>
-            </div>
-            <div id="feature-console-title" class="text-[11px] font-semibold uppercase tracking-[0.9px] text-[var(--color-gray-300)]">
-              {tabs[0].title}
-            </div>
-          </div>
+      <div class="feature-showcase__stage">
+        {
+          tabs.map((tab, index) => (
+            <article
+              class:list={["feature-panel", index === 0 && "is-active"]}
+              data-feature-panel
+              data-feature-id={tab.id}
+              style={`--feature-panel-bg:${tab.theme}; --feature-panel-glow:${tab.glow};`}
+            >
+              <div class="feature-panel__head">
+                <div>
+                  <div class="feature-panel__eyebrow">{tab.eyebrow}</div>
+                  <h3 class="feature-panel__title">{tab.title}</h3>
+                  <p class="feature-panel__description">{tab.description}</p>
+                </div>
+                <a href="#cta" class="feature-panel__cta">{tab.cta}</a>
+              </div>
 
-          <div class="feature-preview-stage overflow-hidden rounded-[18px] border border-[var(--color-border)] bg-white">
-            <img
-              id="feature-image"
-              src={tabs[0].image}
-              alt={tabs[0].title}
-              class="feature-image"
-              style={`--feature-image-position: ${tabs[0].imagePosition};`}
-            />
-          </div>
-        </div>
+              <div class="feature-panel__visual">
+                <div class="feature-visual-card feature-visual-card--back">
+                  <span class="feature-visual-card__label">{tab.labels[0]}</span>
+                  <img src={tab.image} alt="" style={`object-position:${tab.positions[0]};`} />
+                </div>
+
+                <div class="feature-visual-card feature-visual-card--mid">
+                  <span class="feature-visual-card__label">{tab.labels[1]}</span>
+                  <img src={tab.image} alt="" style={`object-position:${tab.positions[1]};`} />
+                </div>
+
+                <div class="feature-visual-card feature-visual-card--front">
+                  <span class="feature-visual-card__label">{tab.labels[2]}</span>
+                  <img src={tab.image} alt="" style={`object-position:${tab.positions[2]};`} />
+                </div>
+
+                <div class="feature-visual-badge">{tab.badge}</div>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </Container>
 </section>
 
 <style>
-  .feature-tab {
-    border: 1px solid var(--color-border);
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.78);
-    min-height: 84px;
-    padding: 14px 16px;
+  .feature-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 332px) minmax(0, 1fr);
+    min-height: 860px;
+  }
+
+  .feature-showcase__nav {
+    padding: 28px 44px 28px 38px;
+    background: #fff;
+  }
+
+  .feature-nav-item {
+    display: grid;
+    grid-template-columns: 12px 36px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgba(24, 29, 38, 0.08);
+    background: transparent;
+    padding: 22px 0;
     text-align: left;
-    transition:
-      transform 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease,
-      box-shadow 0.2s ease;
+    color: rgba(24, 29, 38, 0.42);
+    transition: color 0.24s ease, transform 0.24s ease;
   }
 
-  .feature-tab:hover {
-    transform: translateY(-1px);
-    border-color: rgba(27, 97, 201, 0.22);
-    background: rgba(249, 252, 255, 0.97);
+  .feature-nav-item:first-child {
+    border-top: 0;
   }
 
-  .feature-tab.is-active {
-    border-color: var(--color-primary);
-    background: rgba(27, 97, 201, 0.08);
-    box-shadow: var(--theme_shadow-soft);
+  .feature-nav-item:hover {
+    transform: translateX(2px);
+    color: rgba(24, 29, 38, 0.72);
   }
 
-  .feature-tab,
-  .feature-tab p {
-    color: var(--color-gray-500);
-  }
-
-  .feature-tab h3 {
+  .feature-nav-item.is-active {
     color: var(--color-ink);
   }
 
-  .feature-tab-meta {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--color-gray-300);
+  .feature-nav-item__marker {
+    height: 10px;
+    width: 10px;
+    border-radius: 2px;
+    background: transparent;
+    transition: background-color 0.24s ease;
   }
 
-  .feature-tab-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+  .feature-nav-item.is-active .feature-nav-item__marker {
+    background: #a33c28;
   }
 
-  .feature-tab-chip {
-    display: none;
-    min-height: 26px;
-    align-items: center;
+  .feature-nav-item__number {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .feature-nav-item__label {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+
+  .feature-showcase__stage {
+    position: relative;
+    min-height: 860px;
+  }
+
+  .feature-panel {
+    position: absolute;
+    inset: 18px 18px 18px 0;
+    overflow: hidden;
+    border-radius: 30px;
+    background: var(--feature-panel-bg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(22px);
+    transition:
+      opacity 0.38s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .feature-panel.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .feature-panel::before {
+    content: "";
+    position: absolute;
+    inset: auto 12% 6% 16%;
+    height: 40%;
     border-radius: 999px;
-    padding: 0 10px;
-    font-size: 10px;
+    background: radial-gradient(circle, var(--feature-panel-glow) 0%, rgba(255, 255, 255, 0) 72%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+
+  .feature-panel__head {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 24px;
+    padding: 52px 56px 0;
+    color: white;
+  }
+
+  .feature-panel__eyebrow {
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.7px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    opacity: 0.78;
   }
 
-  .feature-tab.is-active .feature-tab-chip {
+  .feature-panel__title {
+    margin: 14px 0 0;
+    max-width: 14ch;
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    text-wrap: balance;
+  }
+
+  .feature-panel__description {
+    margin: 14px 0 0;
+    max-width: 28ch;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    opacity: 0.86;
+  }
+
+  .feature-panel__cta {
+    align-self: start;
     display: inline-flex;
+    min-height: 76px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 0 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    box-shadow: 0 18px 40px rgba(13, 20, 33, 0.12);
   }
 
-  .feature-preview-stage {
-    flex: 1 1 auto;
-    min-height: 0;
-    padding: 8px;
-    background:
-      radial-gradient(circle at 50% 10%, rgba(27, 97, 201, 0.04), transparent 34%),
-      linear-gradient(180deg, rgba(249, 252, 255, 0.88) 0%, rgba(255, 255, 255, 1) 100%);
+  .feature-panel__visual {
+    position: absolute;
+    inset: 0;
   }
 
-  .feature-image {
-    display: block;
-    width: 100%;
+  .feature-visual-card {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow:
+      0 22px 40px rgba(11, 19, 31, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition:
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease;
+  }
+
+  .feature-panel.is-active .feature-visual-card {
+    opacity: 1;
+  }
+
+  .feature-visual-card img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
-    object-position: var(--feature-image-position, center top);
-    transition: opacity 0.2s ease;
+    opacity: 0.38;
+    mix-blend-mode: screen;
+  }
+
+  .feature-visual-card__label {
+    position: absolute;
+    left: 20px;
+    top: 18px;
+    z-index: 2;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .feature-visual-card--back {
+    left: 12%;
+    bottom: -2%;
+    width: 250px;
+    height: 430px;
+    transform: translate3d(-20px, 48px, 0) rotate(-28deg);
+  }
+
+  .feature-panel.is-active .feature-visual-card--back {
+    transform: translate3d(0, 0, 0) rotate(-28deg);
+    transition-delay: 0.06s;
+  }
+
+  .feature-visual-card--mid {
+    left: 40%;
+    bottom: -1%;
+    width: 254px;
+    height: 438px;
+    transform: translate3d(-8px, 54px, 0) rotate(-16deg);
+  }
+
+  .feature-panel.is-active .feature-visual-card--mid {
+    transform: translate3d(0, 0, 0) rotate(-16deg);
+    transition-delay: 0.14s;
+  }
+
+  .feature-visual-card--front {
+    right: 10%;
+    bottom: -1%;
+    width: 286px;
+    height: 446px;
+    transform: translate3d(14px, 60px, 0) rotate(-7deg);
+  }
+
+  .feature-panel.is-active .feature-visual-card--front {
+    transform: translate3d(0, 0, 0) rotate(-7deg);
+    transition-delay: 0.22s;
+  }
+
+  .feature-visual-badge {
+    position: absolute;
+    left: 48%;
+    bottom: 8%;
+    z-index: 3;
+    display: inline-flex;
+    min-height: 128px;
+    min-width: 138px;
+    align-items: end;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.16);
+    padding: 18px 20px;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 18px 40px rgba(11, 19, 31, 0.12);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translate3d(0, 48px, 0);
+    transition:
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.45s ease;
+  }
+
+  .feature-panel.is-active .feature-visual-badge {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0.28s;
   }
 
   @media (max-width: 1279px) {
-    .feature-preview-stage {
-      height: 400px;
-      min-height: 400px;
+    .feature-showcase {
+      grid-template-columns: minmax(0, 1fr);
+      min-height: auto;
+    }
+
+    .feature-showcase__nav {
+      padding: 24px;
+    }
+
+    .feature-showcase__stage {
+      min-height: 720px;
+    }
+
+    .feature-panel {
+      inset: 0 18px 18px;
     }
   }
 
   @media (max-width: 767px) {
-    .feature-tab {
-      min-height: 78px;
-      padding: 12px 14px;
+    .feature-showcase {
+      border-radius: 30px;
     }
 
-    .feature-preview-stage {
-      height: 280px;
-      min-height: 280px;
-      padding: 6px;
+    .feature-showcase__nav {
+      padding: 18px 20px 10px;
+    }
+
+    .feature-nav-item {
+      grid-template-columns: 12px 30px minmax(0, 1fr);
+      padding: 16px 0;
+    }
+
+    .feature-showcase__stage {
+      min-height: 620px;
+    }
+
+    .feature-panel {
+      inset: 0 12px 12px;
+      border-radius: 24px;
+    }
+
+    .feature-panel__head {
+      grid-template-columns: minmax(0, 1fr);
+      padding: 26px 24px 0;
+    }
+
+    .feature-panel__title {
+      max-width: 11ch;
+      font-size: clamp(1.9rem, 8vw, 2.6rem);
+    }
+
+    .feature-panel__description {
+      max-width: 22ch;
+      font-size: 0.98rem;
+    }
+
+    .feature-panel__cta {
+      min-height: 52px;
+      padding: 0 18px;
+      border-radius: 16px;
+      font-size: 0.94rem;
+    }
+
+    .feature-visual-card--back {
+      left: 8%;
+      width: 170px;
+      height: 288px;
+    }
+
+    .feature-visual-card--mid {
+      left: 34%;
+      width: 176px;
+      height: 300px;
+    }
+
+    .feature-visual-card--front {
+      right: 6%;
+      width: 194px;
+      height: 310px;
+    }
+
+    .feature-visual-badge {
+      left: 40%;
+      bottom: 10%;
+      min-height: 88px;
+      min-width: 108px;
+      padding: 14px 16px;
+      font-size: 0.88rem;
     }
   }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const buttons = Array.from(document.querySelectorAll("[data-feature-tab]"));
-    const image = document.getElementById("feature-image") as HTMLImageElement | null;
-    const consoleTitle = document.getElementById("feature-console-title");
-    const tabsColumn = document.getElementById("features-tabs");
-    const previewCard = document.getElementById("feature-preview-card") as HTMLDivElement | null;
+    const root = document.getElementById("feature-showcase");
+    if (!root) return;
 
-    const syncFeatureHeights = () => {
-      if (!previewCard || !tabsColumn) return;
+    const triggers = Array.from(root.querySelectorAll("[data-feature-trigger]"));
+    const panels = Array.from(root.querySelectorAll("[data-feature-panel]"));
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      if (window.innerWidth < 1280) {
-        previewCard.style.height = "";
-        return;
-      }
+    let activeIndex = 0;
+    let timerId = 0;
 
-      previewCard.style.height = `${tabsColumn.offsetHeight}px`;
+    const render = (index) => {
+      activeIndex = index;
+      const targetId = triggers[index]?.getAttribute("data-feature-id");
+      if (!targetId) return;
+
+      triggers.forEach((trigger, triggerIndex) => {
+        const isActive = triggerIndex === index;
+        trigger.classList.toggle("is-active", isActive);
+        trigger.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      panels.forEach((panel) => {
+        panel.classList.toggle("is-active", panel.getAttribute("data-feature-id") === targetId);
+      });
     };
 
-    const setActive = (button: Element) => {
-      buttons.forEach((entry) => entry.classList.remove("is-active"));
-      button.classList.add("is-active");
-
-      const nextImage = button.getAttribute("data-image");
-      const nextTitle = button.getAttribute("data-title") ?? "";
-      const nextImagePosition = button.getAttribute("data-image-position") ?? "center top";
-
-      if (consoleTitle) consoleTitle.textContent = nextTitle;
-
-      if (image && nextImage) {
-        image.style.opacity = "0";
-        window.setTimeout(() => {
-          image.src = nextImage;
-          image.alt = nextTitle;
-          image.style.setProperty("--feature-image-position", nextImagePosition);
-          image.style.opacity = "1";
-        }, 160);
-      }
-
-      window.requestAnimationFrame(syncFeatureHeights);
+    const next = () => {
+      render((activeIndex + 1) % triggers.length);
     };
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => setActive(button));
+    const stop = () => {
+      if (timerId) window.clearInterval(timerId);
+    };
+
+    const start = () => {
+      stop();
+      if (prefersReducedMotion || triggers.length <= 1) return;
+      timerId = window.setInterval(next, 4200);
+    };
+
+    triggers.forEach((trigger, index) => {
+      trigger.addEventListener("click", () => {
+        render(index);
+        start();
+      });
+
+      trigger.addEventListener("mouseenter", () => {
+        render(index);
+        stop();
+      });
     });
 
-    window.addEventListener("resize", syncFeatureHeights);
-    window.requestAnimationFrame(syncFeatureHeights);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+
+    render(0);
+    start();
   });
 </script>
