@@ -5,14 +5,17 @@ import {
 } from "./site";
 
 export const CLI_INSTALL_COMMAND = "brew tap AOS-HZ/tap && brew install --cask aos-desktop";
-export const AOS_DESKTOP_MACOS_DMG_URL =
-  "https://github.com/AOS-HZ/aos-desktop-releases/releases/download/v0.1.4/Aegis_0.1.4_universal.dmg";
+export const AOS_DESKTOP_MACOS_FALLBACK_DMG_URL =
+  "https://github.com/AOS-HZ/aos-desktop-releases/releases/download/v0.1.5/Aegis_0.1.5_universal.dmg";
+export const AOS_DESKTOP_MACOS_LATEST_API_URL =
+  "/api/public/desktop/latest?platform=macos&channel=stable";
 
 export const DOWNLOAD_PLATFORMS = [
   {
     id: "macos",
     label: "macOS",
-    href: AOS_DESKTOP_MACOS_DMG_URL,
+    href: AOS_DESKTOP_MACOS_FALLBACK_DMG_URL,
+    latestEndpoint: AOS_DESKTOP_MACOS_LATEST_API_URL,
     action: "下载 macOS 安装包",
     enabled: true,
     summary: "通过桌面工作台完成安装准备、第一次本地扫描与结果阅读。",

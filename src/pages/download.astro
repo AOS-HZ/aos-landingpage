@@ -53,6 +53,7 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
                   data-platform-trigger
                   data-platform-id={platform.id}
                   data-platform-href={platform.href}
+                  data-platform-latest-endpoint={platform.latestEndpoint}
                   data-platform-action={platform.action}
                   aria-disabled={platform.enabled === false ? "true" : "false"}
                   aria-pressed={index === 0 ? "true" : "false"}
@@ -133,6 +134,44 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
       const copyLabel = root.querySelector("[data-copy-label]");
       const commandText = root.querySelector("[data-command-text]");
       const fallbackNote = note?.textContent ?? "";
+      let isResolvingPrimaryDownload = false;
+      let hasPrefetchedLatestMacos = false;
+
+      const fetchLatestDownloadUrl = async (endpoint) => {
+        const response = await fetch(endpoint, {
+          cache: "no-store",
+          headers: {
+            Accept: "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`Failed to load latest desktop release: ${response.status}`);
+        }
+
+        const payload = await response.json();
+        if (!payload || typeof payload.download_url !== "string" || payload.download_url.length === 0) {
+          throw new Error("Latest desktop release payload is missing download_url");
+        }
+
+        return payload.download_url;
+      };
+
+      const syncLatestMacosHref = async (trigger) => {
+        const latestEndpoint = trigger?.dataset.platformLatestEndpoint;
+        if (!trigger || !latestEndpoint) return;
+
+        try {
+          const latestHref = await fetchLatestDownloadUrl(latestEndpoint);
+          trigger.dataset.platformHref = latestHref;
+
+          if (primary?.dataset.platformId === trigger.dataset.platformId) {
+            primary.setAttribute("href", latestHref);
+            primary.dataset.platformHref = latestHref;
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
 
       const setActivePlatform = (platformId) => {
         const activeTrigger = triggers.find((trigger) => trigger.dataset.platformId === platformId) ?? triggers[0];
@@ -151,10 +190,19 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
         if (primary) {
           primary.setAttribute("href", activeTrigger.dataset.platformHref ?? "/download");
           primary.textContent = activeTrigger.dataset.platformAction ?? "查看安装说明";
+          primary.dataset.platformId = activeTrigger.dataset.platformId ?? "";
+          primary.dataset.platformHref = activeTrigger.dataset.platformHref ?? "";
+          primary.dataset.platformLatestEndpoint = activeTrigger.dataset.platformLatestEndpoint ?? "";
+          primary.dataset.platformAction = activeTrigger.dataset.platformAction ?? "查看安装说明";
         }
 
         if (note) {
           note.textContent = fallbackNote;
+        }
+
+        if (activeTrigger.dataset.platformId === "macos" && !hasPrefetchedLatestMacos) {
+          hasPrefetchedLatestMacos = true;
+          void syncLatestMacosHref(activeTrigger);
         }
       };
 
@@ -168,6 +216,50 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
       const requestedPlatform = new URLSearchParams(window.location.search).get("platform");
       const hasRequestedPlatform = triggers.some((trigger) => trigger.dataset.platformId === requestedPlatform);
       setActivePlatform(hasRequestedPlatform ? requestedPlatform : "macos");
+
+      if (primary) {
+        primary.addEventListener("click", async (event) => {
+          if (primary.dataset.platformId !== "macos" || isResolvingPrimaryDownload) {
+            return;
+          }
+
+          const latestEndpoint = primary.dataset.platformLatestEndpoint;
+          const fallbackHref = primary.dataset.platformHref ?? primary.getAttribute("href") ?? "";
+          if (!latestEndpoint) {
+            return;
+          }
+
+          event.preventDefault();
+          isResolvingPrimaryDownload = true;
+          primary.textContent = "获取最新版本...";
+          primary.setAttribute("aria-busy", "true");
+
+          try {
+            const latestHref = await fetchLatestDownloadUrl(latestEndpoint);
+            primary.setAttribute("href", latestHref);
+            primary.dataset.platformHref = latestHref;
+
+            const macosTrigger = triggers.find((trigger) => trigger.dataset.platformId === "macos");
+            if (macosTrigger) {
+              macosTrigger.dataset.platformHref = latestHref;
+            }
+
+            window.location.assign(latestHref);
+            return;
+          } catch (error) {
+            console.error(error);
+
+            if (fallbackHref) {
+              window.location.assign(fallbackHref);
+              return;
+            }
+          } finally {
+            isResolvingPrimaryDownload = false;
+            primary.removeAttribute("aria-busy");
+            primary.textContent = primary.dataset.platformAction ?? "查看安装说明";
+          }
+        });
+      }
 
       if (!copyButton || !copyLabel || !commandText) return;
 
@@ -399,6 +491,13 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
   .download-primary:hover {
     background: #191919;
     transform: translateY(-1px);
+  }
+
+  .download-primary[aria-busy="true"] {
+    cursor: wait;
+    opacity: 0.9;
+    pointer-events: none;
+    transform: none;
   }
 
   .download-hero__note {
