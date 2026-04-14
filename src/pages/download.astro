@@ -231,8 +231,6 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
 
           event.preventDefault();
           isResolvingPrimaryDownload = true;
-          primary.textContent = "获取最新版本...";
-          primary.setAttribute("aria-busy", "true");
 
           try {
             const latestHref = await fetchLatestDownloadUrl(latestEndpoint);
@@ -255,8 +253,6 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
             }
           } finally {
             isResolvingPrimaryDownload = false;
-            primary.removeAttribute("aria-busy");
-            primary.textContent = primary.dataset.platformAction ?? "查看安装说明";
           }
         });
       }
@@ -491,13 +487,6 @@ const commandDisplayLines = CLI_INSTALL_COMMAND.split(" && ").map((segment, inde
   .download-primary:hover {
     background: #191919;
     transform: translateY(-1px);
-  }
-
-  .download-primary[aria-busy="true"] {
-    cursor: wait;
-    opacity: 0.9;
-    pointer-events: none;
-    transform: none;
   }
 
   .download-hero__note {
