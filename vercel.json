@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/public/desktop/latest",
+      "destination": "https://api.123offer.cn/api/public/desktop/latest"
+    }
+  ]
+}
