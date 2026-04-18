@@ -3,27 +3,27 @@ import Container from "./Container.astro";
 
 const threats = [
   {
-    label: "Prompt Injection",
-    title: "提示注入攻击",
-    metric: "73%",
-    description: "输入内容诱导 Agent 偏离原本边界。",
-    response: "用运行时策略拦截高危指令。",
+    label: "Visibility",
+    title: "看不清全貌",
+    metric: "5+",
+    description: "Codex、Claude Code、Qwen 各有一本账，Token 与成本散落各处。",
+    response: "AOS 把多家 Agent 的指标收进一块总览。",
+    tone: "background: rgba(27, 97, 201, 0.1); color: var(--color-primary);",
+  },
+  {
+    label: "Detection",
+    title: "抓不住异常",
+    metric: "0s",
+    description: "exec_command 一类高危工具被反复触发时，团队往往毫无感知。",
+    response: "命中规则即拦截，并实时打到告警面板。",
     tone: "background: rgba(238, 29, 54, 0.08); color: var(--color-red);",
   },
   {
-    label: "Privilege Creep",
-    title: "权限横向移动",
-    metric: "12",
-    description: "Agent 默认绑定的权限往往比实际需要更多。",
-    response: "按任务上下文收紧 scope。",
-    tone: "background: rgba(255, 107, 0, 0.1); color: var(--color-orange);",
-  },
-  {
-    label: "MCP Supply Chain",
-    title: "MCP 供应链风险",
-    metric: "85%",
-    description: "第三方服务可能携带隐藏能力和异常行为。",
-    response: "对来源、依赖和能力做审计。",
+    label: "Forensics",
+    title: "追不回现场",
+    metric: "1:1",
+    description: "出事之后想回看会话、工具和模型的执行顺序几乎不可能。",
+    response: "Live Canvas 沿时间轴还原完整调用链。",
     tone: "background: rgba(122, 61, 255, 0.1); color: var(--color-purple);",
   },
 ];
@@ -33,9 +33,9 @@ const threats = [
   <Container>
     <div class="mx-auto max-w-[760px] text-center">
       <div class="eyebrow justify-center">Risk Model</div>
-      <h2 class="section-title mt-4">三类最常见的 Agent 风险来源</h2>
+      <h2 class="section-title mt-4">多 Agent 时代最棘手的三件事</h2>
       <p class="section-copy copy-measure copy-measure--center mt-5">
-        Prompt、权限和第三方来源，是 Agent 最常见的三类风险入口，也是运行时治理最先要收住的地方。
+        看清、抓住、追回——这三步做不到，多 Agent 的效率红利就会被风险和黑盒反噬。
       </p>
     </div>
 

@@ -37,10 +37,10 @@ const commandIconMarkup = {
 const heroSlides = [
   {
     commandIcon: "runtime",
-    title: "自动标记高权限 Agent、异常 MCP 调用与运行时慢工具",
-    eyebrow: "Runtime Center",
-    image: "/assets/activity-monitor-v2.png",
-    alt: "AOS runtime monitoring dashboard",
+    title: "多家 Agent 的运行时指标，同一块总览",
+    eyebrow: "Overview",
+    image: "/assets/overview-dashboard.png",
+    alt: "AOS multi-agent overview dashboard",
     stageBg:
       "linear-gradient(180deg, rgba(226, 247, 244, 0.98) 0%, rgba(231, 247, 244, 0.94) 46%, rgba(245, 252, 250, 0.98) 100%)",
     stageBorder: "rgba(134, 212, 202, 0.82)",
@@ -58,10 +58,10 @@ const heroSlides = [
   },
   {
     commandIcon: "inventory",
-    title: "统一盘点桌面端、CLI 与工作流里的 Agent 资产",
-    eyebrow: "Inventory Console",
-    image: "/assets/scan-result.png",
-    alt: "AOS asset inventory dashboard",
+    title: "按会话追踪每一次工具调用、Token 消耗与风险事件",
+    eyebrow: "Sessions",
+    image: "/assets/sessions-inspector.png",
+    alt: "AOS session inspector",
     stageBg:
       "linear-gradient(180deg, rgba(232, 243, 255, 0.98) 0%, rgba(240, 247, 255, 0.94) 46%, rgba(247, 251, 255, 0.98) 100%)",
     stageBorder: "rgba(165, 202, 250, 0.78)",
@@ -79,10 +79,10 @@ const heroSlides = [
   },
   {
     commandIcon: "audit",
-    title: "识别 skills 与 MCP 来源，提前发现第三方能力风险",
-    eyebrow: "Skills Audit",
-    image: "/assets/skills-management.png",
-    alt: "AOS skills management dashboard",
+    title: "实时捕获被拦截的高危工具调用与 skill 触发链路",
+    eyebrow: "Alerts",
+    image: "/assets/alerts-center.png",
+    alt: "AOS alerts center",
     stageBg:
       "linear-gradient(180deg, rgba(245, 238, 255, 0.98) 0%, rgba(246, 241, 255, 0.94) 46%, rgba(251, 248, 255, 0.98) 100%)",
     stageBorder: "rgba(200, 173, 255, 0.82)",
@@ -100,10 +100,10 @@ const heroSlides = [
   },
   {
     commandIcon: "permissions",
-    title: "高风险能力可隔离、恢复或删除，整个过程都有留痕",
-    eyebrow: "Quarantine Zone",
-    image: "/assets/risk-analysis-v2.png",
-    alt: "AOS quarantine zone dashboard",
+    title: "Live Canvas 把模型、工具和告警沿时间轴还原到同一画布",
+    eyebrow: "Live Canvas",
+    image: "/assets/live-canvas.png",
+    alt: "AOS live canvas trace visualization",
     stageBg:
       "linear-gradient(180deg, rgba(255, 241, 235, 0.98) 0%, rgba(255, 243, 237, 0.94) 46%, rgba(255, 249, 245, 0.98) 100%)",
     stageBorder: "rgba(245, 183, 157, 0.82)",
@@ -127,15 +127,15 @@ const initialSlide = heroSlides[0];
 <Container>
   <main class="relative pb-8 pt-10 lg:pb-10 lg:pt-14">
     <div class="mx-auto max-w-[900px] text-center animate-[var(--animate-rise-in)]">
-      <div class="eyebrow hero-eyebrow justify-center">Agent runtime governance</div>
+      <div class="eyebrow hero-eyebrow justify-center">Multi-agent observability</div>
       <h1 class="hero-title mx-auto mt-6 max-w-[8.2em] font-display text-[clamp(2.8rem,5.2vw,4.95rem)] font-medium leading-[1.02] tracking-[-0.045em] text-[var(--color-ink)]">
-        <span class="block">在一个面板里</span>
+        <span class="block">一块面板</span>
         <span class="block">
-          看清 <span class="text-[var(--color-primary)]">Agent</span> 风险
+          看清所有 <span class="text-[var(--color-primary)]">Agent</span>
         </span>
       </h1>
       <p class="copy-measure copy-measure--center mt-6 text-[1.02rem] leading-[1.72] tracking-[0.01em] text-[var(--color-gray-500)] sm:text-[1.1rem]">
-        统一发现资产、收紧默认权限、监控运行时行为，在高风险动作发生前完成扫描与拦截。
+        跨 Codex、Claude Code、Qwen Code 等多家 Agent 汇总会话、工具调用、Token 成本与告警，异常发生时第一时间感知并拦截。
       </p>
 
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

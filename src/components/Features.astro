@@ -3,64 +3,64 @@ import Container from "./Container.astro";
 
 const tabs = [
   {
-    id: "inventory",
+    id: "overview",
     number: "01",
-    nav: "资产发现",
-    eyebrow: "Inventory",
-    title: "先把 Agent 资产盘清",
-    description: "桌面端与 CLI 统一接入。",
-    cta: "查看资产视图",
-    image: "/assets/dashboard.png",
+    nav: "多 Agent 总览",
+    eyebrow: "Overview",
+    title: "把多家 Agent 收进同一块面板",
+    description: "Token、调用、成本与防护状态一目了然。",
+    cta: "查看总览",
+    image: "/assets/overview-dashboard.png",
     theme:
       "linear-gradient(180deg, #2457d3 0%, #163f9e 100%)",
     glow: "rgba(36, 87, 211, 0.26)",
-    labels: ["DESKTOP", "AGENTS", "CLI"],
+    labels: ["AGENTS", "METRICS", "COST"],
     positions: ["14% 10%", "56% 6%", "90% 14%"],
   },
   {
-    id: "audit",
+    id: "sessions",
     number: "02",
-    nav: "第三方扫描",
-    eyebrow: "Skills Audit",
-    title: "把第三方能力风险提早暴露出来",
-    description: "skills 与 MCP 来源一眼看清。",
-    cta: "查看扫描结果",
-    image: "/assets/skills-management.png",
-    theme:
-      "linear-gradient(180deg, #7a3dff 0%, #5f27d8 100%)",
-    glow: "rgba(122, 61, 255, 0.24)",
-    labels: ["SOURCE", "SKILLS", "MCP"],
-    positions: ["12% 8%", "54% 8%", "88% 8%"],
-  },
-  {
-    id: "runtime",
-    number: "03",
-    nav: "运行时监控",
-    eyebrow: "Runtime Center",
-    title: "把异常调用与慢工具放进同一个视图",
-    description: "风险、会话和耗时同屏展示。",
-    cta: "查看运行时面板",
-    image: "/assets/activity-monitor-v2.png",
+    nav: "会话追溯",
+    eyebrow: "Sessions",
+    title: "按会话还原每一次工具调用",
+    description: "风险打分、Token 走势与耗时同屏展示。",
+    cta: "查看会话",
+    image: "/assets/sessions-inspector.png",
     theme:
       "linear-gradient(180deg, #0f7a71 0%, #075e58 100%)",
     glow: "rgba(15, 122, 113, 0.24)",
-    labels: ["SESSIONS", "TOOLS", "RUNTIME"],
+    labels: ["SESSION", "TOOLS", "RISK"],
     positions: ["18% 10%", "54% 14%", "88% 8%"],
   },
   {
-    id: "permissions",
-    number: "04",
-    nav: "权限治理",
-    eyebrow: "Quarantine Zone",
-    title: "高风险能力可隔离、恢复与留痕",
-    description: "权限治理不再停留在纸面上。",
-    cta: "查看治理流程",
-    image: "/assets/quarantine-zone.png",
+    id: "alerts",
+    number: "03",
+    nav: "告警拦截",
+    eyebrow: "Alerts",
+    title: "高危工具调用第一时间拦截",
+    description: "每条告警都有定位会话与原始载荷。",
+    cta: "查看告警",
+    image: "/assets/alerts-center.png",
     theme:
       "linear-gradient(180deg, #a33c28 0%, #862d1b 100%)",
     glow: "rgba(163, 60, 40, 0.24)",
-    labels: ["POLICY", "QUARANTINE", "RESTORE"],
+    labels: ["BLOCKED", "RULE", "SESSION"],
     positions: ["12% 18%", "54% 16%", "88% 12%"],
+  },
+  {
+    id: "canvas",
+    number: "04",
+    nav: "调用链还原",
+    eyebrow: "Live Canvas",
+    title: "把工具、模型与告警摆上同一画布",
+    description: "沿时间轴一眼看清 Agent 的决策路径。",
+    cta: "查看 Live Canvas",
+    image: "/assets/live-canvas.png",
+    theme:
+      "linear-gradient(180deg, #7a3dff 0%, #5f27d8 100%)",
+    glow: "rgba(122, 61, 255, 0.24)",
+    labels: ["INPUT", "TOOLS", "OUTPUT"],
+    positions: ["12% 8%", "54% 8%", "88% 8%"],
   },
 ];
 ---
@@ -391,132 +391,132 @@ const tabs = [
     transition-delay: 0.22s;
   }
 
-  .feature-panel[data-feature-id="audit"] {
+  .feature-panel[data-feature-id="alerts"] {
     transform: translate3d(34px, 10px, 0) scale(0.985);
   }
 
-  .feature-panel[data-feature-id="audit"].is-active {
+  .feature-panel[data-feature-id="alerts"].is-active {
     transform: translate3d(0, 0, 0) scale(1);
   }
 
-  .feature-panel[data-feature-id="audit"] .feature-panel__head > div,
-  .feature-panel[data-feature-id="audit"] .feature-panel__cta {
+  .feature-panel[data-feature-id="alerts"] .feature-panel__head > div,
+  .feature-panel[data-feature-id="alerts"] .feature-panel__cta {
     opacity: 0;
     transition:
       transform 0.62s cubic-bezier(0.22, 1, 0.36, 1),
       opacity 0.32s ease;
   }
 
-  .feature-panel[data-feature-id="audit"] .feature-panel__head > div {
+  .feature-panel[data-feature-id="alerts"] .feature-panel__head > div {
     transform: translate3d(-28px, 0, 0);
   }
 
-  .feature-panel[data-feature-id="audit"] .feature-panel__cta {
+  .feature-panel[data-feature-id="alerts"] .feature-panel__cta {
     transform: translate3d(24px, 0, 0);
   }
 
-  .feature-panel[data-feature-id="audit"].is-active .feature-panel__head > div,
-  .feature-panel[data-feature-id="audit"].is-active .feature-panel__cta {
+  .feature-panel[data-feature-id="alerts"].is-active .feature-panel__head > div,
+  .feature-panel[data-feature-id="alerts"].is-active .feature-panel__cta {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 
-  .feature-panel[data-feature-id="audit"].is-active .feature-panel__head > div {
+  .feature-panel[data-feature-id="alerts"].is-active .feature-panel__head > div {
     transition-delay: 0.06s;
   }
 
-  .feature-panel[data-feature-id="audit"].is-active .feature-panel__cta {
+  .feature-panel[data-feature-id="alerts"].is-active .feature-panel__cta {
     transition-delay: 0.12s;
   }
 
-  .feature-panel[data-feature-id="audit"] .feature-visual-card--back {
+  .feature-panel[data-feature-id="alerts"] .feature-visual-card--back {
     transform: translate3d(-54px, 56px, 0) rotate(-42deg) scale(0.92);
   }
 
-  .feature-panel[data-feature-id="audit"].is-active .feature-visual-card--back {
+  .feature-panel[data-feature-id="alerts"].is-active .feature-visual-card--back {
     transform: translate3d(-10px, -6px, 0) rotate(-34deg) scale(1);
     transition-delay: 0.03s;
   }
 
-  .feature-panel[data-feature-id="audit"] .feature-visual-card--mid {
+  .feature-panel[data-feature-id="alerts"] .feature-visual-card--mid {
     transform: translate3d(6px, 78px, 0) rotate(-4deg) scale(0.9);
   }
 
-  .feature-panel[data-feature-id="audit"].is-active .feature-visual-card--mid {
+  .feature-panel[data-feature-id="alerts"].is-active .feature-visual-card--mid {
     transform: translate3d(6px, -4px, 0) rotate(-8deg) scale(1);
     transition-delay: 0.14s;
   }
 
-  .feature-panel[data-feature-id="audit"] .feature-visual-card--front {
+  .feature-panel[data-feature-id="alerts"] .feature-visual-card--front {
     transform: translate3d(62px, 52px, 0) rotate(14deg) scale(0.92);
   }
 
-  .feature-panel[data-feature-id="audit"].is-active .feature-visual-card--front {
+  .feature-panel[data-feature-id="alerts"].is-active .feature-visual-card--front {
     transform: translate3d(14px, -6px, 0) rotate(5deg) scale(1);
     transition-delay: 0.24s;
   }
 
-  .feature-panel[data-feature-id="runtime"] {
+  .feature-panel[data-feature-id="sessions"] {
     transform: translate3d(0, 38px, 0) scale(0.972);
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active {
+  .feature-panel[data-feature-id="sessions"].is-active {
     transform: translate3d(0, 0, 0) scale(1);
   }
 
-  .feature-panel[data-feature-id="runtime"] .feature-panel__head > div,
-  .feature-panel[data-feature-id="runtime"] .feature-panel__cta {
+  .feature-panel[data-feature-id="sessions"] .feature-panel__head > div,
+  .feature-panel[data-feature-id="sessions"] .feature-panel__cta {
     opacity: 0;
     transition:
       transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
       opacity 0.32s ease;
   }
 
-  .feature-panel[data-feature-id="runtime"] .feature-panel__head > div {
+  .feature-panel[data-feature-id="sessions"] .feature-panel__head > div {
     transform: translate3d(0, -20px, 0);
   }
 
-  .feature-panel[data-feature-id="runtime"] .feature-panel__cta {
+  .feature-panel[data-feature-id="sessions"] .feature-panel__cta {
     transform: translate3d(0, 20px, 0);
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__head > div,
-  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__cta {
+  .feature-panel[data-feature-id="sessions"].is-active .feature-panel__head > div,
+  .feature-panel[data-feature-id="sessions"].is-active .feature-panel__cta {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__head > div {
+  .feature-panel[data-feature-id="sessions"].is-active .feature-panel__head > div {
     transition-delay: 0.06s;
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active .feature-panel__cta {
+  .feature-panel[data-feature-id="sessions"].is-active .feature-panel__cta {
     transition-delay: 0.14s;
   }
 
-  .feature-panel[data-feature-id="runtime"] .feature-visual-card--back {
+  .feature-panel[data-feature-id="sessions"] .feature-visual-card--back {
     transform: translate3d(-8px, 90px, 0) rotate(-10deg) scale(0.9);
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active .feature-visual-card--back {
+  .feature-panel[data-feature-id="sessions"].is-active .feature-visual-card--back {
     transform: translate3d(-12px, 6px, 0) rotate(-18deg) scale(1);
     transition-delay: 0.04s;
   }
 
-  .feature-panel[data-feature-id="runtime"] .feature-visual-card--mid {
+  .feature-panel[data-feature-id="sessions"] .feature-visual-card--mid {
     transform: translate3d(0, 118px, 0) rotate(2deg) scale(0.88);
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active .feature-visual-card--mid {
+  .feature-panel[data-feature-id="sessions"].is-active .feature-visual-card--mid {
     transform: translate3d(0, -10px, 0) rotate(-2deg) scale(1);
     transition-delay: 0.2s;
   }
 
-  .feature-panel[data-feature-id="runtime"] .feature-visual-card--front {
+  .feature-panel[data-feature-id="sessions"] .feature-visual-card--front {
     transform: translate3d(18px, 108px, 0) rotate(10deg) scale(0.9);
   }
 
-  .feature-panel[data-feature-id="runtime"].is-active .feature-visual-card--front {
+  .feature-panel[data-feature-id="sessions"].is-active .feature-visual-card--front {
     transform: translate3d(8px, 2px, 0) rotate(6deg) scale(1);
     transition-delay: 0.12s;
   }
