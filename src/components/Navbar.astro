@@ -16,7 +16,15 @@ const {
   actionButton = { text: "下载客户端", href: "/download" }
 } = Astro.props;
 
-const isExternalAction = /^https?:\/\//.test(actionButton.href);
+const isExternalAction = (() => {
+  if (!/^https?:\/\//.test(actionButton.href)) return false;
+
+  try {
+    return !["www.aoshield.cn", "aoshield.cn"].includes(new URL(actionButton.href).hostname);
+  } catch {
+    return true;
+  }
+})();
 
 const menuitems = [
   { title: "核心能力", path: "#features" },

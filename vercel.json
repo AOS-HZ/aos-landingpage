@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/doc",
+      "destination": "https://doc.agentshield.site/"
+    },
+    {
+      "source": "/doc/:path*",
+      "destination": "https://doc.agentshield.site/:path*"
+    },
+    {
       "source": "/api/public/desktop/latest",
       "destination": "https://api.123offer.cn/api/public/desktop/latest"
     }
