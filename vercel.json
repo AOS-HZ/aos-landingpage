@@ -1,12 +1,20 @@
 {
   "rewrites": [
     {
+      "source": "/doc/",
+      "destination": "https://doc.aoshield.cn/"
+    },
+    {
       "source": "/doc",
-      "destination": "https://doc.agentshield.site/"
+      "destination": "https://doc.aoshield.cn/"
+    },
+    {
+      "source": "/doc/aos-desktop/",
+      "destination": "https://doc.aoshield.cn/aos-desktop/"
     },
     {
       "source": "/doc/:path*",
-      "destination": "https://doc.agentshield.site/:path*"
+      "destination": "https://doc.aoshield.cn/:path*"
     },
     {
       "source": "/api/public/desktop/latest",

@@ -139,16 +139,16 @@ const initialSlide = heroSlides[0];
       </p>
 
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <Link href="#cta" style="secondary" class="w-full rounded-[16px] px-8 shadow-none sm:w-auto">
+        <Link href="#cta" style="secondary" class="hero-action-link w-full rounded-[16px] px-8 shadow-none sm:w-auto">
           开始体验
         </Link>
         <Link
           href={DOCS_URL}
           size="lg"
           style="ghost"
-          class="hero-doc-link w-full rounded-[16px] px-8 shadow-none sm:w-auto"
+          class="hero-action-link hero-doc-link w-full rounded-[16px] px-8 shadow-none sm:w-auto"
         >
-          文档中心
+          使用帮助
         </Link>
       </div>
     </div>
@@ -253,6 +253,10 @@ const initialSlide = heroSlides[0];
     text-wrap: balance;
   }
 
+  .hero-action-link {
+    justify-content: center;
+  }
+
   .hero-doc-link {
     gap: 0.42rem;
     border-color: rgba(24, 29, 38, 0.08);
@@ -262,9 +266,8 @@ const initialSlide = heroSlides[0];
   }
 
   @media (min-width: 640px) {
-    .hero-doc-link {
+    .hero-action-link {
       min-width: 176px;
-      justify-content: center;
     }
   }
 
