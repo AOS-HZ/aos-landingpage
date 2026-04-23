@@ -6,7 +6,7 @@ import {
 
 export const CLI_INSTALL_COMMAND = "brew tap AOS-HZ/tap && brew install --cask aos-desktop";
 export const AOS_DESKTOP_MACOS_FALLBACK_DMG_URL =
-  "https://github.com/AOS-HZ/aos-desktop-releases/releases/download/v0.1.6/Aegis_0.1.6_universal.dmg";
+  "https://github.com/AOS-HZ/aos-desktop-releases/releases/download/v0.1.10/Aegis_0.1.10_universal.dmg";
 // Keep this same-origin in the browser and let the deployment edge proxy it to avoid CORS failures.
 export const AOS_DESKTOP_MACOS_LATEST_API_URL =
   "/api/public/desktop/latest?platform=macos&channel=stable";
